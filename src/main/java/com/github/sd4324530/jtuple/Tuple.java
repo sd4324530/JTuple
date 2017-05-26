@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
@@ -57,19 +58,19 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     }
 
     @Override
-    public final void forEach(Consumer<? super Object> action) {
+    public final void forEach(final Consumer<? super Object> action) {
         requireNonNull(action, "action is null");
         this.valueList.forEach(action);
     }
 
-    public final void forEachWithIndex(BiConsumer<Integer, ? super Object> action) {
+    public final void forEachWithIndex(final BiConsumer<Integer, ? super Object> action) {
         requireNonNull(action, "action is null");
         for (int i = 0, length = this.valueList.size(); i < length; i++) {
             action.accept(i, this.valueList.get(i));
         }
     }
 
-    public final Tuple subTuple(int start, int end) {
+    public final Tuple subTuple(final int start, final int end) {
         if (start < 0 || end < 0)
             throw new IllegalArgumentException("start, end must >= 0");
         if (end >= this.valueList.size())
@@ -93,7 +94,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
         }
     }
 
-    public Tuple add(Tuple other) {
+    public Tuple add(final Tuple other) {
         requireNonNull(other, "tuple is null");
         final Stream.Builder<Object> builder = Stream.builder();
         this.valueList.forEach(builder::add);
@@ -101,8 +102,21 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
         return TupleN.with(builder.build().toArray());
     }
 
+    public Tuple repeat(final int times) {
+        if (times < 0)
+            throw new IllegalArgumentException("times must >= 0");
+        return TupleN.with(IntStream.range(0, 3)
+                .mapToObj(i -> this.valueList.toArray())
+                .reduce((a, b) -> {
+                    Object[] temp = new Object[a.length + b.length];
+                    System.arraycopy(a, 0, temp, 0, a.length);
+                    System.arraycopy(b, 0, temp, a.length, b.length);
+                    return temp;
+                }).get());
+    }
+
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (isNull(obj))
             return false;
         if (obj == this)
@@ -123,7 +137,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
 
     /**
      * 反转元组
-     * 反转
+     * 反转后元组大小不变，子类各自实现可以达到最好性能，也可以指定返回值类型，方便使用
+     *
      * @return 反转后的元组
      */
     public abstract Tuple swap();

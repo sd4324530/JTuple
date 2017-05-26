@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 /**
  * @author peiyu
  */
@@ -35,5 +38,20 @@ public class TupleTest {
     public void testSwap() {
         TupleN tuple = TupleN.with("hello", 123, true, 186.5);
         log.debug("swap:{}", tuple.swap().toString());
+    }
+
+    @Test
+    public void testTuple0() {
+        Tuple0 tuple0 = Tuple0.with();
+        Tuple0 tuple01 = Tuple0.with();
+        log.debug("tuple0:{}", tuple0 == tuple01);
+        Tuple1 tuple1 = Tuple1.with("123");
+        log.debug("0+1:{}", tuple0.add(tuple1));
+    }
+
+    @Test
+    public void testRepeat() {
+        Tuple2 tuple2 = Tuple2.with("a", "b");
+        log.debug("repeat2:{}", tuple2.repeat(3).toString());
     }
 }
