@@ -4,9 +4,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 /**
  * @author peiyu
  */
@@ -52,6 +49,13 @@ public class TupleTest {
     @Test
     public void testRepeat() {
         Tuple2 tuple2 = Tuple2.with("a", "b");
-        log.debug("repeat2:{}", tuple2.repeat(3).toString());
+        log.debug("repeat:{}", tuple2.repeat(3).toString());
+    }
+
+    @Test
+    public void testTuple2() {
+        Tuple2 tuple2 = Tuple2.with("test", 123);
+        log.debug("first:{}", tuple2.first);//test
+        log.debug("second:{}", tuple2.second);//123
     }
 }
