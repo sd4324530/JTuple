@@ -112,7 +112,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     public Tuple repeat(final int times) {
         if (times < 0)
             throw new IllegalArgumentException("times must >= 0");
-        return TupleN.with(IntStream.range(0, 3)
+        return TupleN.with(IntStream.range(0, times)
                 .mapToObj(i -> this.valueList.toArray())
                 .reduce((a, b) -> {
                     Object[] temp = new Object[a.length + b.length];
