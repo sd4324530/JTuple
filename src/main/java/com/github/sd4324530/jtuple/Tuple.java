@@ -94,7 +94,14 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
         }
     }
 
-    public Tuple add(final Tuple other) {
+    public Tuple add(final Tuple... tuples) {
+        requireNonNull(tuples, "tuple is null");
+        if (tuples.length == 0)
+            return this;
+        return Arrays.stream(tuples).reduce(this, Tuple::add);
+    }
+
+    private Tuple add(final Tuple other) {
         requireNonNull(other, "tuple is null");
         final Stream.Builder<Object> builder = Stream.builder();
         this.valueList.forEach(builder::add);

@@ -33,6 +33,7 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 | equals           | 比较2个元组内容是否相同             |
 | toString         | 输出字符串表示的元组，如: (123, 456) |
 | repeat           | 重复元组内的所有元素               |
+|                  |                          |
 
 ## 样例
 ```java
@@ -50,7 +51,9 @@ log.debug("toString:{}", tuple.toString());//(hello, 123, true, 186.5)
 ```java
 Tuple1 tuple1 = Tuple1.with("hello");
 Tuple2 tuple2 = Tuple2.with("world", "!");
+Tuple3 tuple3 = Tuple3.with(1, 2, 3);
 log.debug("add:{}", tuple1.add(tuple2).toString());//(hello, world, !)
+log.debug("add:{}", tuple1.add(tuple2, tuple3).toString());//(hello, world, !, 1, 2, 3)
 ```
 
 ```java

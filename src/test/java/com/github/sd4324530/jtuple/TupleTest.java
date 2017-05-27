@@ -28,7 +28,9 @@ public class TupleTest {
     public void testAdd() {
         Tuple1 tuple1 = Tuple1.with("hello");
         Tuple2 tuple2 = Tuple2.with("world", "!");
+        Tuple3 tuple3 = Tuple3.with(1, 2, 3);
         log.debug("add:{}", tuple1.add(tuple2).toString());
+        log.debug("add:{}", tuple1.add(tuple2, tuple3).toString());
     }
 
     @Test
