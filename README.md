@@ -38,8 +38,8 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 ## 样例
 ```java
 Tuple2 tuple2 = Tuple2.with("test", 123);
-log.debug("first:{}", tuple2.first);//test
-log.debug("second:{}", tuple2.second);//123
+log.debug("first:{}", tuple2._0);//test
+log.debug("second:{}", tuple2._1);//123
 ```
 
 

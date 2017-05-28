@@ -31,11 +31,6 @@ public final class TupleN extends Tuple {
         return new TupleN(args);
     }
 
-    public static TupleN withMap(final Map<String, Object> map) {
-        requireNonNull(map, "map is null");
-        return TupleN.with(map.values().toArray());
-    }
-
     public static TupleN withList(final List<Object> list) {
         requireNonNull(list, "list is null");
         return TupleN.with(list.toArray());

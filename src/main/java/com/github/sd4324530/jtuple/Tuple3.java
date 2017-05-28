@@ -14,26 +14,19 @@ import static java.util.Objects.requireNonNull;
  */
 public final class Tuple3<A, B, C> extends Tuple {
 
-    public final A first;
-    public final B second;
-    public final C third;
+    public final A _0;
+    public final B _1;
+    public final C _2;
 
     private Tuple3(final A first, final B second, final C third) {
         super(first, second, third);
-        this.first = first;
-        this.second = second;
-        this.third = third;
+        this._0 = first;
+        this._1 = second;
+        this._2 = third;
     }
 
     public static <A, B, C> Tuple3<A, B, C> with(final A first, final B second, final C third) {
         return new Tuple3<>(first, second, third);
-    }
-
-    public static <A, B, C> Tuple3<A, B, C> with(final Map<String, Object> map) {
-        requireNonNull(map, "map is null");
-        if (map.size() != 3)
-            throw new IllegalArgumentException("map's size != 3");
-        return new Tuple3((A) map.get("first"), (B) map.get("second"), (C) map.get("third"));
     }
 
     public static <A, B, C> Tuple3<A, B, C> with(final List<Object> list) {
@@ -45,6 +38,6 @@ public final class Tuple3<A, B, C> extends Tuple {
 
     @Override
     public Tuple3<C, B, A> swap() {
-        return Tuple3.with(this.third, this.second, this.first);
+        return Tuple3.with(this._2, this._1, this._0);
     }
 }

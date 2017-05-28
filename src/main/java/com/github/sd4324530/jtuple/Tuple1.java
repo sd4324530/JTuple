@@ -14,22 +14,15 @@ import static java.util.Objects.requireNonNull;
  */
 public final class Tuple1<A> extends Tuple {
 
-    public final A first;
+    public final A _0;
 
     private Tuple1(final A first) {
         super(first);
-        this.first = first;
+        this._0 = first;
     }
 
     public static <A> Tuple1<A> with(final A first) {
         return new Tuple1<>(first);
-    }
-
-    public static <A> Tuple1<A> with(final Map<String, ? extends A> map) {
-        requireNonNull(map, "map is null");
-        if (map.size() != 1)
-            throw new IllegalArgumentException("map's size != 1");
-        return new Tuple1<>(map.get("first"));
     }
 
     public static <A> Tuple1<A> with(final List<? extends A> list) {
@@ -41,6 +34,6 @@ public final class Tuple1<A> extends Tuple {
 
     @Override
     public Tuple1<A> swap() {
-        return Tuple1.with(this.first);
+        return Tuple1.with(this._0);
     }
 }

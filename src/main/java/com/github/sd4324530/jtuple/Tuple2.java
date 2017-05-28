@@ -14,24 +14,17 @@ import static java.util.Objects.requireNonNull;
  */
 public final class Tuple2<A, B> extends Tuple {
 
-    public final A first;
-    public final B second;
+    public final A _0;
+    public final B _1;
 
     private Tuple2(final A first, final B second) {
         super(first, second);
-        this.first = first;
-        this.second = second;
+        this._0 = first;
+        this._1 = second;
     }
 
     public static <A, B> Tuple2<A, B> with(final A first, final B second) {
         return new Tuple2<>(first, second);
-    }
-
-    public static <A, B> Tuple2<A, B> with(final Map<String, Object> map) {
-        requireNonNull(map, "map is null");
-        if (map.size() != 2)
-            throw new IllegalArgumentException("map's size != 2");
-        return new Tuple2<>((A) map.get("first"), (B) map.get("second"));
     }
 
     public static <A, B> Tuple2<A, B> with(final List<Object> list) {
@@ -43,6 +36,6 @@ public final class Tuple2<A, B> extends Tuple {
 
     @Override
     public Tuple2<B, A> swap() {
-        return Tuple2.with(this.second, this.first);
+        return Tuple2.with(this._1, this._0);
     }
 }

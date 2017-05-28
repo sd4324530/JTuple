@@ -14,28 +14,21 @@ import static java.util.Objects.requireNonNull;
  */
 public final class Tuple4<A, B, C, D> extends Tuple {
 
-    public final A first;
-    public final B second;
-    public final C third;
-    public final D fourth;
+    public final A _0;
+    public final B _1;
+    public final C _2;
+    public final D _3;
 
     private Tuple4(final A first, final B second, final C third, final D fourth) {
         super(first, second, third, fourth);
-        this.first = first;
-        this.second = second;
-        this.third = third;
-        this.fourth = fourth;
+        this._0 = first;
+        this._1 = second;
+        this._2 = third;
+        this._3 = fourth;
     }
 
     public static <A, B, C, D> Tuple4<A, B, C, D> with(final A first, final B second, final C third, final D fourth) {
         return new Tuple4<>(first, second, third, fourth);
-    }
-
-    public static <A, B, C, D> Tuple4<A, B, C, D> with(final Map<String, Object> map) {
-        requireNonNull(map, "map is null");
-        if (map.size() != 4)
-            throw new IllegalArgumentException("map's size != 4");
-        return new Tuple4((A) map.get("first"), (B) map.get("second"), (C) map.get("third"), (D) map.get("fourth"));
     }
 
     public static <A, B, C, D> Tuple4<A, B, C, D> with(final List<Object> list) {
@@ -47,6 +40,6 @@ public final class Tuple4<A, B, C, D> extends Tuple {
 
     @Override
     public Tuple4<D, C, B, A> swap() {
-        return Tuple4.with(this.fourth, this.third, this.second, this.first);
+        return Tuple4.with(this._3, this._2, this._1, this._0);
     }
 }
