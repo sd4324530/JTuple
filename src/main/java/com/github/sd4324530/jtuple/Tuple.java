@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -128,18 +129,21 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
             return false;
         if (obj == this)
             return true;
-        if (obj instanceof Tuple) {
-            Tuple other = (Tuple) obj;
-            return other.valueList.equals(this.valueList);
-        }
+        if (obj instanceof Tuple)
+            return ((Tuple) obj).valueList.equals(this.valueList);
         return false;
     }
 
     @Override
+    public int hashCode() {
+        return this.valueList.hashCode();
+    }
+
+    @Override
     public String toString() {
-        final StringJoiner joiner = new StringJoiner(", ", "(", ")");
-        this.valueList.forEach(obj -> joiner.add(obj.toString()));
-        return joiner.toString();
+        return this.valueList.stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining(", ", "(", ")"));
     }
 
     /**
@@ -151,28 +155,6 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     public abstract Tuple swap();
 
     /**
-     * 从一个map生成一个元组，常用于json的转换
-     *
-     * @param map map
-     * @return 元组
-     */
-    public static Tuple withMap(final Map<String, Object> map) {
-        requireNonNull(map, "map is null");
-        switch (map.size()) {
-            case 1:
-                return Tuple1.with(map.get("first"));
-            case 2:
-                return Tuple2.with(map.get("first"), map.get("second"));
-            case 3:
-                return Tuple3.with(map.get("first"), map.get("second"), map.get("third"));
-            case 4:
-                return Tuple4.with(map.get("first"), map.get("second"), map.get("third"), map.get("fourth"));
-            default:
-                return TupleN.with(map.values().toArray());
-        }
-    }
-
-    /**
      * 从一个List生成一个元组
      *
      * @param list list
@@ -181,6 +163,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     public static Tuple withList(final List<Object> list) {
         requireNonNull(list, "list is null");
         switch (list.size()) {
+            case 0:
+                return Tuple0.with();
             case 1:
                 return Tuple1.with(list.get(0));
             case 2:
