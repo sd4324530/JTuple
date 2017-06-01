@@ -1,7 +1,6 @@
 package com.github.sd4324530.jtuple;
 
 import java.util.List;
-import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 
