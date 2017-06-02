@@ -14,11 +14,21 @@ public final class Tuple0 extends Tuple {
         super(EMPTY);
     }
 
+    /**
+     * 反转元组
+     *
+     * @return 反转后的元组
+     */
     @Override
     public Tuple0 swap() {
         return this;
     }
 
+    /**
+     * 得到一个包含0个元素的元组
+     *
+     * @return 元组
+     */
     public static Tuple0 with() {
         return INSTANCE;
     }

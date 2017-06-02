@@ -20,10 +20,25 @@ public final class Tuple1<A> extends Tuple {
         this._0 = first;
     }
 
+    /**
+     * 创建一个包含1个元素的元组
+     *
+     * @param first 第一个元素
+     * @param <A>   元素类型
+     * @return 元组
+     */
     public static <A> Tuple1<A> with(final A first) {
         return new Tuple1<>(first);
     }
 
+    /**
+     * 通过列表创建一个包含1个元素的元组
+     * 包含的元素是列表的第一个元素
+     *
+     * @param list 列表
+     * @param <A>  元素类型
+     * @return 元组
+     */
     public static <A> Tuple1<A> with(final List<? extends A> list) {
         requireNonNull(list, "list is null");
         if (list.size() != 1)
@@ -31,6 +46,11 @@ public final class Tuple1<A> extends Tuple {
         return new Tuple1<>(list.get(0));
     }
 
+    /**
+     * 反转元组
+     *
+     * @return 反转后的元组
+     */
     @Override
     public Tuple1<A> swap() {
         return Tuple1.with(this._0);

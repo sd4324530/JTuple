@@ -17,19 +17,35 @@ public final class TupleN extends Tuple {
         super(args);
     }
 
+    /**
+     * 反转元组
+     *
+     * @return 反转后的元组
+     */
     @Override
     public TupleN swap() {
-        final int size = this.size();
-        final Object[] array = new Object[size];
-        this.forEachWithIndex((index, obj) -> array[size - 1 - index] = obj);
+        final Object[] array = new Object[this.size()];
+        this.forEachWithIndex((index, obj) -> array[array.length - 1 - index] = obj);
         return TupleN.with(array);
     }
 
+    /**
+     * 从一个数组生成一个元组
+     *
+     * @param args 数组
+     * @return 元组
+     */
     public static TupleN with(final Object... args) {
         requireNonNull(args, "args is null");
         return new TupleN(args);
     }
 
+    /**
+     * 从一个列表生成一个元组
+     *
+     * @param list 列表
+     * @return 元组
+     */
     public static TupleN withList(final List<Object> list) {
         requireNonNull(list, "list is null");
         return TupleN.with(list.toArray());
