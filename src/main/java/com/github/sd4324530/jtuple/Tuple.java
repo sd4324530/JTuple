@@ -206,7 +206,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     public final String toString() {
         return this.valueList.stream()
                 .map(Objects::toString)
-                .collect(Collectors.joining(",", "(", ")"));
+                .collect(Collectors.joining(", ", "(", ")"));
     }
 
     /**
