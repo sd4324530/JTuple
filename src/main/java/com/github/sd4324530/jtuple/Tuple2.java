@@ -13,13 +13,13 @@ import static java.util.Objects.requireNonNull;
  */
 public final class Tuple2<A, B> extends Tuple {
 
-    public final A _0;
-    public final B _1;
+    public final A first;
+    public final B second;
 
     private Tuple2(final A first, final B second) {
         super(first, second);
-        this._0 = first;
-        this._1 = second;
+        this.first = first;
+        this.second = second;
     }
 
     /**
@@ -58,6 +58,6 @@ public final class Tuple2<A, B> extends Tuple {
      */
     @Override
     public Tuple2<B, A> swap() {
-        return Tuple2.with(this._1, this._0);
+        return Tuple2.with(this.second, this.first);
     }
 }

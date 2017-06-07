@@ -4,8 +4,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -61,15 +59,15 @@ public class TupleTest {
     @Test
     public void testTuple2() {
         Tuple2 tuple2 = Tuple2.with("test", 123);
-        log.debug("first:{}", tuple2._0);//test
-        log.debug("second:{}", tuple2._1);//123
+        log.debug("first:{}", tuple2.first);//test
+        log.debug("second:{}", tuple2.second);//123
     }
 
     @Test
     public void testNull() {
         Tuple2 tuple2 = Tuple2.with("test", null);
         log.debug("test null:{}", tuple2.toString());
-        log.debug("null:{}", tuple2._1);
+        log.debug("null:{}", tuple2.second);
     }
 
     @Test

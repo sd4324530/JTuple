@@ -13,17 +13,17 @@ import static java.util.Objects.requireNonNull;
  */
 public final class Tuple4<A, B, C, D> extends Tuple {
 
-    public final A _0;
-    public final B _1;
-    public final C _2;
-    public final D _3;
+    public final A first;
+    public final B second;
+    public final C third;
+    public final D fourth;
 
     private Tuple4(final A first, final B second, final C third, final D fourth) {
         super(first, second, third, fourth);
-        this._0 = first;
-        this._1 = second;
-        this._2 = third;
-        this._3 = fourth;
+        this.first = first;
+        this.second = second;
+        this.third = third;
+        this.fourth = fourth;
     }
 
     /**
@@ -68,6 +68,6 @@ public final class Tuple4<A, B, C, D> extends Tuple {
      */
     @Override
     public Tuple4<D, C, B, A> swap() {
-        return Tuple4.with(this._3, this._2, this._1, this._0);
+        return Tuple4.with(this.fourth, this.third, this.second, this.first);
     }
 }
