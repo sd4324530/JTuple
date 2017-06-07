@@ -71,4 +71,10 @@ public class TupleTest {
         log.debug("test null:{}", tuple2.toString());
         log.debug("null:{}", tuple2._1);
     }
+
+    @Test
+    public void testSub() {
+        TupleN tupleN = TupleN.with(0, 1, 2, 3, 4, 5, 6);
+        log.debug("sub:{}", tupleN.subTuple(0, 3).toString());
+    }
 }

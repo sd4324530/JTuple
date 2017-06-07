@@ -6,7 +6,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
@@ -131,9 +130,9 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
             case 2:
                 return Tuple2.with(this.valueList.get(start), this.valueList.get(end));
             case 3:
-                return Tuple3.with(this.valueList.get(start), this.valueList.get(start + 1), this.valueList.get(start + 2));
+                return Tuple3.with(this.valueList.get(start), this.valueList.get(start + 1), this.valueList.get(end));
             case 4:
-                return Tuple4.with(this.valueList.get(start), this.valueList.get(start + 1), this.valueList.get(start + 2), this.valueList.get(start + 3));
+                return Tuple4.with(this.valueList.get(start), this.valueList.get(start + 1), this.valueList.get(start + 2), this.valueList.get(end));
             default:
                 return TupleN.with(this.valueList.subList(start, end));
         }
@@ -145,19 +144,15 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param tuples 需要合并的元组
      * @return 合并后的新元组
      */
-    public Tuple add(final Tuple... tuples) {
+    public final Tuple add(final Tuple... tuples) {
         requireNonNull(tuples, "tuple is null");
         if (tuples.length == 0)
             return this;
-        return Arrays.stream(tuples).reduce(this, Tuple::add);
-    }
-
-    private Tuple add(final Tuple other) {
-        requireNonNull(other, "tuple is null");
-        final Stream.Builder<Object> builder = Stream.builder();
-        this.valueList.forEach(builder::add);
-        other.valueList.forEach(builder::add);
-        return TupleN.with(builder.build().toArray());
+        List<Object> temp = new ArrayList<>(this.valueList);
+        for (Tuple t :tuples) {
+            temp.addAll(t.valueList);
+        }
+        return TupleN.withList(temp);
     }
 
     /**
@@ -166,7 +161,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param times 重复次数
      * @return 得到的元组
      */
-    public Tuple repeat(final int times) {
+    public final Tuple repeat(final int times) {
         if (times < 0)
             throw new IllegalArgumentException("times must >= 0");
         return TupleN.with(IntStream.range(0, times)
@@ -187,7 +182,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @return 比较结果
      */
     @Override
-    public boolean equals(final Object obj) {
+    public final boolean equals(final Object obj) {
         if (isNull(obj))
             return false;
         if (obj == this)
@@ -198,20 +193,20 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return this.valueList.hashCode();
     }
 
     /**
-     * 得到元组的字符串，比如(123, 456)
+     * 得到元组的字符串，比如(123,456)
      *
      * @return 元组的字符串
      */
     @Override
-    public String toString() {
+    public final String toString() {
         return this.valueList.stream()
                 .map(Objects::toString)
-                .collect(Collectors.joining(", ", "(", ")"));
+                .collect(Collectors.joining(",", "(", ")"));
     }
 
     /**
