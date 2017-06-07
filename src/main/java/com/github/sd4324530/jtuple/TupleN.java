@@ -41,7 +41,7 @@ public final class TupleN extends Tuple {
     }
 
     /**
-     * 从一个列表生成一个元组
+     * 从一个列表生成一个元组,元组大小等于列表大小
      *
      * @param list 列表
      * @return 元组

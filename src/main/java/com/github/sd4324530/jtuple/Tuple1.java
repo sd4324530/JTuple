@@ -33,7 +33,7 @@ public final class Tuple1<A> extends Tuple {
 
     /**
      * 通过列表创建一个包含1个元素的元组
-     * 包含的元素是列表的第一个元素
+     * 包含的元素是列表的第一个元素，如果不存在，则为null
      *
      * @param list 列表
      * @param <A>  元素类型
@@ -41,8 +41,8 @@ public final class Tuple1<A> extends Tuple {
      */
     public static <A> Tuple1<A> with(final List<? extends A> list) {
         requireNonNull(list, "list is null");
-        if (list.size() != 1)
-            throw new IllegalArgumentException("list's size != 1");
+        if (list.size() == 0)
+            return new Tuple1<>(null);
         return new Tuple1<>(list.get(0));
     }
 

@@ -45,7 +45,7 @@ public final class Tuple4<A, B, C, D> extends Tuple {
 
     /**
      * 通过列表创建一个包含4个元素的元组
-     * 包含的元素是列表的前四个元素
+     * 包含的元素是列表的前四个元素，如果不存在，则为null
      *
      * @param list 列表
      * @param <A>  第一个元素类型
@@ -56,8 +56,16 @@ public final class Tuple4<A, B, C, D> extends Tuple {
      */
     public static <A, B, C, D> Tuple4<A, B, C, D> with(final List<Object> list) {
         requireNonNull(list, "list is null");
-        if (list.size() != 4)
-            throw new IllegalArgumentException("list's size != 4");
+        switch (list.size()) {
+            case 0:
+                return new Tuple4<>(null, null, null, null);
+            case 1:
+                return new Tuple4<>((A)list.get(0), null, null, null);
+            case 2:
+                return new Tuple4<>((A)list.get(0), (B)list.get(1), null, null);
+            case 3:
+                return new Tuple4<>((A)list.get(0), (B)list.get(1), (C)list.get(2), null);
+        }
         return new Tuple4((A) list.get(0), (B) list.get(1), (C) list.get(2), (D) list.get(3));
     }
 

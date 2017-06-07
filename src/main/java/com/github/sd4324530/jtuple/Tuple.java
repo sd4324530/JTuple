@@ -237,7 +237,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
             case 4:
                 return Tuple4.with(list.get(0), list.get(1), list.get(2), list.get(3));
             default:
-                return TupleN.with(list.toArray());
+                return TupleN.withList(list);
         }
     }
 }
