@@ -75,4 +75,10 @@ public class TupleTest {
         TupleN tupleN = TupleN.with(0, 1, 2, 3, 4, 5, 6);
         log.debug("sub:{}", tupleN.subTuple(0, 3).toString());
     }
+
+    @Test
+    public void testStream() {
+        TupleN tupleN = TupleN.with("hello", 123, true, null, 186.5);
+        tupleN.stream().forEach(o -> log.debug("元素:{}", o));
+    }
 }

@@ -6,6 +6,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
@@ -85,6 +87,24 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     }
 
     /**
+     * 将元组转成流
+     *
+     * @return 流
+     */
+    public final Stream<Object> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
+    /**
+     * 将元组转成并行流
+     *
+     * @return 流
+     */
+    public final Stream<Object> parallelStream() {
+        return StreamSupport.stream(spliterator(), true);
+    }
+
+    /**
      * 迭代元组
      *
      * @param action 迭代函数
@@ -149,7 +169,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
         if (tuples.length == 0)
             return this;
         List<Object> temp = new ArrayList<>(this.valueList);
-        for (Tuple t :tuples) {
+        for (Tuple t : tuples) {
             temp.addAll(t.valueList);
         }
         return TupleN.withList(temp);
