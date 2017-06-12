@@ -20,7 +20,7 @@ public final class Tuple5<A, B, C, D, E> extends Tuple {
     public final E fifth;
 
     private Tuple5(final A first, final B second, final C third, final D fourth, final E fifth) {
-        super(first, second, third, fourth);
+        super(first, second, third, fourth, fifth);
         this.first = first;
         this.second = second;
         this.third = third;
