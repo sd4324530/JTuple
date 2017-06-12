@@ -6,6 +6,16 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 
 
 
+##  元组的意义
+
+**元组最重要的意义是用来实现多值返现。**很多时候我们需要返回一组值，更可怕的是这组值的类型可能并不完全一样，比如http请求时，有请求的返回码（int）以及响应报文（String）
+
+对于java人员来说，遇到这种情况时，一般的解决方案是编写一个类，类里只有2个属性，分别是以上2个，然后返回给调用者。是不是有种胸闷的感觉。折腾，造孽啊
+
+或者就返回一个列表，但是因为类型不统一，只能用`List<Object>`，后续处理的代码的可读性会很差，我相信任何一个技术水平过关或者有职业操守的程序员都不会这么做
+
+元组的出现，就是为了解决这种情况的，很多年轻的语言（`python`, `go`...）都内置了元组，本项目就是让Java开发人员也可以享受到元组带来的编程时的便捷和快乐
+
 ## 主要实现
 
 |   类名   |          描述           |
@@ -40,7 +50,7 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 |      stream      |      将元组转换成流，类似List.stream      |
 |  parallelStream  | 将元组转换成并行流，类似List.parallelStream |
 
-## 样例
+## API使用样例
 ```java
 //创建元组时，明确知道个数，可以优先使用Tuple0-Tuple5，获取元素API更加友好
 Tuple2 tuple2 = Tuple2.with("test", 123);
@@ -94,7 +104,49 @@ TupleN tupleN = TupleN.with("hello", 123, true, null, 186.5);
 tupleN.stream().forEach(o -> log.debug("元素:{}", o));
 ```
 
+## 元组使用场景样例
 
+1. http请求封装
+
+   ```java
+   public class HttpKit {
+
+       /**
+        * http get 请求
+        *
+        * @param url 请求url
+        * @return 请求结果元组，第一个元素为请求返回码，第二个参数为返回内容，第三个参数为请求失败时的异常
+        */
+       public Tuple3<Integer, String, Exception> get(String url) {
+           //发送请求，解析结果
+           return null;
+       }
+   }
+   ```
+
+   ​
+
+2. 数据库操作封装
+
+   ```java
+   public class DbKit {
+
+       /**
+        * 执行查询sql
+        *
+        * @param sql 查询sql
+        * @return 执行结果元组，第一个元素用来判断执行是否出现异常，如果为null，则表示成功；第二个参数为查询结果
+        */
+       public Tuple2<Exception, List<Object>> query(String sql) {
+           try (Connection connection = getConn(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
+               List<Object> data = handleResult(resultSet);
+               return Tuple2.with(null, data);
+           } catch (Exception e) {
+               return Tuple2.with(e, null);
+           }
+       }
+   }
+   ```
 
 ## 引入(jdk >= 1.8)
 
