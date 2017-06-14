@@ -154,7 +154,7 @@ tupleN.stream().forEach(o -> log.debug("元素:{}", o));
 <dependency>
      <groupId>com.github.sd4324530</groupId>
      <artifactId>JTuple</artifactId>
-     <version>1.0.0</version>
+     <version>1.1.0</version>
 </dependency>
 ```
 
