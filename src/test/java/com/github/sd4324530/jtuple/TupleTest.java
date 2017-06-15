@@ -16,6 +16,10 @@ public class TupleTest {
     @Test
     public void testToString() {
         TupleN tuple = TupleN.with("hello", 123, true, 186.5, null);
+        String one = tuple.get(0);
+        int two = tuple.get(1);
+        log.debug("one:{}", one);
+        log.debug("two:{}", two);
         log.debug("toString:{}", tuple.toString());
     }
 

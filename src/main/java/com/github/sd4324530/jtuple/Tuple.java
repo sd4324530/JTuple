@@ -60,10 +60,11 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * 获取元组中指定位置的元素
      *
      * @param pos 元组中的位置
+     * @param <T> 元素类型
      * @return 对应元素
      */
-    public final Object get(final int pos) {
-        return this.valueList.get(pos);
+    public final <T> T get(final int pos) {
+        return (T) this.valueList.get(pos);
     }
 
     /**
@@ -144,6 +145,9 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
             throw new IllegalArgumentException("end must >= start");
         }
 
+        if (start == 0 && end == this.valueList.size() - 1)
+            return this;
+
         switch (length) {
             case 1:
                 return Tuple1.with(this.valueList.get(start));
@@ -153,6 +157,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
                 return Tuple3.with(this.valueList.get(start), this.valueList.get(start + 1), this.valueList.get(end));
             case 4:
                 return Tuple4.with(this.valueList.get(start), this.valueList.get(start + 1), this.valueList.get(start + 2), this.valueList.get(end));
+            case 5:
+                return Tuple5.with(this.valueList.get(start), this.valueList.get(start + 1), this.valueList.get(start + 2), this.valueList.get(start + 3), this.valueList.get(end));
             default:
                 return TupleN.with(this.valueList.subList(start, end));
         }
@@ -184,6 +190,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     public final Tuple repeat(final int times) {
         if (times < 0)
             throw new IllegalArgumentException("times must >= 0");
+        if (times == 0)
+            return this;
         return TupleN.with(IntStream.range(0, times)
                 .mapToObj(i -> this.valueList.toArray())
                 .reduce((a, b) -> {
@@ -218,7 +226,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     }
 
     /**
-     * 得到元组的字符串，比如(123,456)
+     * 得到元组的字符串，比如(123, 456)
      *
      * @return 元组的字符串
      */
@@ -256,6 +264,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
                 return Tuple3.with(list.get(0), list.get(1), list.get(2));
             case 4:
                 return Tuple4.with(list.get(0), list.get(1), list.get(2), list.get(3));
+            case 5:
+                return Tuple5.with(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4));
             default:
                 return TupleN.withList(list);
         }
