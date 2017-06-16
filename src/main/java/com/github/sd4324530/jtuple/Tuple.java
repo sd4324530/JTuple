@@ -250,7 +250,9 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      *
      * @param list 列表
      * @return 元组
+     * @deprecated 此方法有些多余，会在未来版本删除，可以直接使用各个元组类的with系列方法，比如{@link Tuple2#with(List)}
      */
+    @Deprecated
     public static Tuple withList(final List<Object> list) {
         requireNonNull(list, "list is null");
         switch (list.size()) {
@@ -269,5 +271,63 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
             default:
                 return TupleN.withList(list);
         }
+    }
+
+    /**
+     * 元组列表针对其中某个元素排序，例如
+     * <pre>{@code
+     *     List<Tuple2> list = new ArrayList<>();
+     *     list.add(Tuple2.with(5, "5"));
+     *     list.add(Tuple2.with(2, "2"));
+     *     list.add(Tuple2.with(3, "3"));
+     *     list.add(Tuple2.with(1, "1"));
+     *     list.add(Tuple2.with(4, "4"));
+     *     //按第一列Integer类型升序
+     *     Tuple.sort(list, 0, Integer::compare);
+     *     //按第二列String类型升序
+     *     Tuple.sort(list, 1, String::compareTo);
+     *     }
+     * </pre>
+     *
+     * @param list       需要排序的元组列表
+     * @param index      用于排序的元素序号
+     * @param comparator 排序函数
+     * @param <T>        需要排序的数据类型
+     */
+    public static <T> void sort(final List<? extends Tuple> list, final int index, final Comparator<? super T> comparator) {
+        requireNonNull(list, "list is null");
+        requireNonNull(comparator, "comparator is null");
+        check(index >= 0, "index must >= 0");
+        list.sort(Comparator.comparing(t -> (T) t.get(index), comparator));
+    }
+
+    /**
+     * 元组数组针对其中某个元素排序，例如
+     * <pre>{@code
+     *     Tuple2[] array = new Tuple2[5];
+     *     array[0] = Tuple2.with("5", 5);
+     *     array[1] = Tuple2.with("2", 2);
+     *     array[2] = Tuple2.with("3", 3);
+     *     array[3] = Tuple2.with("1", 1);
+     *     array[4] = Tuple2.with("4", 4);
+     *     //按第一列String类型升序
+     *     Tuple.sort(array, 0, String::compareTo);
+     *     //按第二列Integer类型升序
+     *     Tuple.sort(array, 1, Integer::compare);
+     *     }
+     * </pre>
+     *
+     * @param array      需要排序的元组数组
+     * @param index      用于排序的元素序号
+     * @param comparator 排序函数
+     * @param <T>        需要排序的数据类型
+     */
+    public static <T> void sort(final Tuple[] array, final int index, final Comparator<? super T> comparator) {
+        requireNonNull(array, "array is null");
+        sort(Arrays.asList(array), index, comparator);
+    }
+
+    static void check(final boolean value, final String msg) {
+        if (!value) throw new IllegalArgumentException(msg);
     }
 }

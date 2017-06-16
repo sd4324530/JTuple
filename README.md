@@ -49,6 +49,7 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 |      repeat      |           重复元组内的所有元素            |
 |      stream      |      将元组转换成流，类似List.stream      |
 |  parallelStream  | 将元组转换成并行流，类似List.parallelStream |
+|       sort       |          将元组列表（数组）进行排序          |
 
 ## API使用样例
 ```java
@@ -103,6 +104,38 @@ log.debug("sub:{}", tupleN.subTuple(0, 3).toString());//(0, 1, 2, 3)
 TupleN tupleN = TupleN.with("hello", 123, true, null, 186.5);
 tupleN.stream().forEach(o -> log.debug("元素:{}", o));
 ```
+
+```java
+//元组列表排序
+List<Tuple2> list = new ArrayList<>();
+list.add(Tuple2.with(5, "5"));
+list.add(Tuple2.with(2, "2"));
+list.add(Tuple2.with(3, "3"));
+list.add(Tuple2.with(1, "1"));
+list.add(Tuple2.with(4, "4"));
+log.debug("before:{}", list);
+//按第一列Integer类型升序
+Tuple.sort(list, 0, Integer::compare);
+log.debug("after:{}", list);
+```
+
+```java
+//元组数组排序
+Tuple2[] array = new Tuple2[5];
+array[0] = Tuple2.with("5", 5);
+array[1] = Tuple2.with("2", 2);
+array[2] = Tuple2.with("3", 3);
+array[3] = Tuple2.with("1", 1);
+array[4] = Tuple2.with("4", 4);
+log.debug("before:{}", Arrays.toString(array));
+//按第一列String类型升序
+Tuple.sort(array, 0, String::compareTo);
+log.debug("after:{}", Arrays.toString(array));
+```
+
+
+
+
 
 ## 元组使用场景样例
 

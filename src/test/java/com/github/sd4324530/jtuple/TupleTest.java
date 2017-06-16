@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author peiyu
@@ -84,5 +84,31 @@ public class TupleTest {
     public void testStream() {
         TupleN tupleN = TupleN.with("hello", 123, true, null, 186.5);
         tupleN.stream().forEach(o -> log.debug("元素:{}", o));
+    }
+
+    @Test
+    public void testSort() {
+        List<Tuple2> list = new ArrayList<>();
+        list.add(Tuple2.with(5, "5"));
+        list.add(Tuple2.with(2, "2"));
+        list.add(Tuple2.with(3, "3"));
+        list.add(Tuple2.with(1, "1"));
+        list.add(Tuple2.with(4, "4"));
+        log.debug("before:{}", list);
+        //按第一列Integer类型升序
+        Tuple.sort(list, 0, Integer::compare);
+        log.debug("after:{}", list);
+
+        Tuple2[] array = new Tuple2[5];
+        array[0] = Tuple2.with("5", 5);
+        array[1] = Tuple2.with("2", 2);
+        array[2] = Tuple2.with("3", 3);
+        array[3] = Tuple2.with("1", 1);
+        array[4] = Tuple2.with("4", 4);
+        log.debug("before:{}", Arrays.toString(array));
+        //按第一列String类型升序
+        Tuple.sort(array, 0, String::compareTo);
+        log.debug("after:{}", Arrays.toString(array));
+
     }
 }
