@@ -50,7 +50,7 @@ public final class Tuple2<A, B> extends Tuple {
             case 0:
                 return new Tuple2<>(null, null);
             case 1:
-                return new Tuple2<>((A)list.get(0), null);
+                return new Tuple2<>((A) list.get(0), null);
         }
         return new Tuple2<>((A) list.get(0), (B) list.get(1));
     }

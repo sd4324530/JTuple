@@ -55,9 +55,9 @@ public final class Tuple3<A, B, C> extends Tuple {
             case 0:
                 return new Tuple3<>(null, null, null);
             case 1:
-                return new Tuple3<>((A)list.get(0), null, null);
+                return new Tuple3<>((A) list.get(0), null, null);
             case 2:
-                return new Tuple3<>((A)list.get(0), (B)list.get(1), null);
+                return new Tuple3<>((A) list.get(0), (B) list.get(1), null);
         }
         return new Tuple3((A) list.get(0), (B) list.get(1), (C) list.get(2));
     }

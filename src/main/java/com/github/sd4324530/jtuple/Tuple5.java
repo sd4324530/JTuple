@@ -35,7 +35,7 @@ public final class Tuple5<A, B, C, D, E> extends Tuple {
      * @param second 第二个元素
      * @param third  第三个元素
      * @param fourth 第四个元素
-     * @param fifth 第五个元素
+     * @param fifth  第五个元素
      * @param <A>    第一个元素类型
      * @param <B>    第二个元素类型
      * @param <C>    第三个元素类型

@@ -60,11 +60,11 @@ public final class Tuple4<A, B, C, D> extends Tuple {
             case 0:
                 return new Tuple4<>(null, null, null, null);
             case 1:
-                return new Tuple4<>((A)list.get(0), null, null, null);
+                return new Tuple4<>((A) list.get(0), null, null, null);
             case 2:
-                return new Tuple4<>((A)list.get(0), (B)list.get(1), null, null);
+                return new Tuple4<>((A) list.get(0), (B) list.get(1), null, null);
             case 3:
-                return new Tuple4<>((A)list.get(0), (B)list.get(1), (C)list.get(2), null);
+                return new Tuple4<>((A) list.get(0), (B) list.get(1), (C) list.get(2), null);
         }
         return new Tuple4((A) list.get(0), (B) list.get(1), (C) list.get(2), (D) list.get(3));
     }

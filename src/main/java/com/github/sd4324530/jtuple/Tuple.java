@@ -123,9 +123,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      */
     public final void forEachWithIndex(final BiConsumer<Integer, ? super Object> action) {
         requireNonNull(action, "action is null");
-        for (int i = 0, length = this.valueList.size(); i < length; i++) {
+        for (int i = 0, length = this.valueList.size(); i < length; i++)
             action.accept(i, this.valueList.get(i));
-        }
     }
 
     /**
@@ -141,9 +140,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
         if (end >= this.valueList.size())
             throw new IllegalArgumentException("this tuple's size is" + this.valueList.size());
         int length = end - start + 1;
-        if (length <= 0) {
+        if (length <= 0)
             throw new IllegalArgumentException("end must >= start");
-        }
 
         if (start == 0 && end == this.valueList.size() - 1)
             return this;
@@ -175,9 +173,8 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
         if (tuples.length == 0)
             return this;
         List<Object> temp = new ArrayList<>(this.valueList);
-        for (Tuple t : tuples) {
+        for (Tuple t : tuples)
             temp.addAll(t.valueList);
-        }
         return TupleN.withList(temp);
     }
 
