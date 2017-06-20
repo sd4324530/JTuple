@@ -1,7 +1,5 @@
 machine:
   java:
     version: oraclejdk8
-  pre:
-    - pip install --user codecov
   post:
-    - codecov
+    - bash <(curl -s https://codecov.io/bash)
