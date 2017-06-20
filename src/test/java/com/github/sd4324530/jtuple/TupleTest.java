@@ -91,7 +91,7 @@ public class TupleTest {
         log.debug("sub4:{}", tupleN.subTuple(0, 3).toString());
         log.debug("sub5:{}", tupleN.subTuple(0, 4).toString());
         log.debug("sub6:{}", tupleN.subTuple(0, 5).toString());
-        log.debug("sub7:{}", tupleN.subTuple(0, 6).toString());
+        log.debug("sub7:{}", tupleN.subTuple(0, tupleN.size() - 1).toString());
         try {
             tupleN.subTuple(-1, 0);
         } catch (Exception e) {
