@@ -91,6 +91,7 @@ public class TupleTest {
         log.debug("sub4:{}", tupleN.subTuple(0, 3).toString());
         log.debug("sub5:{}", tupleN.subTuple(0, 4).toString());
         log.debug("sub6:{}", tupleN.subTuple(0, 5).toString());
+        log.debug("sub7:{}", tupleN.subTuple(0, 6).toString());
         try {
             tupleN.subTuple(-1, 0);
         } catch (Exception e) {
@@ -157,12 +158,12 @@ public class TupleTest {
         //length=1的数组传入
         Tuple.sort(array2, 0, String::compareTo);
         try {
-            Tuple.sort(list2, -1, Integer::compare);
+            Tuple.sort(list, -1, Integer::compare);
         } catch (Exception e) {
             log.error("", e);
         }
         try {
-            Tuple.sort(array2, -1, Integer::compare);
+            Tuple.sort(array, -1, Integer::compare);
         } catch (Exception e) {
             log.error("", e);
         }
@@ -217,9 +218,25 @@ public class TupleTest {
     @Test
     public void testWithList() {
         List<Object> list = new ArrayList<>();
+        Tuple tuple0 = Tuple.withList(list);
+        log.debug("tuple0:{}", tuple0.toString());
         list.add("test");
+        Tuple tuple1 = Tuple.withList(list);
+        log.debug("tuple1:{}", tuple1.toString());
         list.add(123);
-        Tuple tuple = Tuple.withList(list);
-        log.debug("tuple:{}", tuple.toString());
+        Tuple tuple2 = Tuple.withList(list);
+        log.debug("tuple2:{}", tuple2.toString());
+        list.add(true);
+        Tuple tuple3 = Tuple.withList(list);
+        log.debug("tuple3:{}", tuple3.toString());
+        list.add(186.5);
+        Tuple tuple4 = Tuple.withList(list);
+        log.debug("tuple4:{}", tuple4.toString());
+        list.add('D');
+        Tuple tuple5 = Tuple.withList(list);
+        log.debug("tuple5:{}", tuple5.toString());
+        list.add(null);
+        Tuple tuple6 = Tuple.withList(list);
+        log.debug("tuple6:{}", tuple6.toString());
     }
 }
