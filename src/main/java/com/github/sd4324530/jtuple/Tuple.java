@@ -293,8 +293,11 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      */
     public static <T> void sort(final List<? extends Tuple> list, final int index, final Comparator<? super T> comparator) {
         requireNonNull(list, "list is null");
+        if (list.size() < 2)
+            return;
         requireNonNull(comparator, "comparator is null");
-        check(index >= 0, "index must >= 0");
+        if (index < 0)
+            throw new IllegalArgumentException("index must >= 0");
         list.sort(Comparator.comparing(t -> (T) t.get(index), comparator));
     }
 
@@ -321,10 +324,11 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      */
     public static <T> void sort(final Tuple[] array, final int index, final Comparator<? super T> comparator) {
         requireNonNull(array, "array is null");
-        sort(Arrays.asList(array), index, comparator);
-    }
-
-    static void check(final boolean value, final String msg) {
-        if (!value) throw new IllegalArgumentException(msg);
+        if (array.length < 2)
+            return;
+        requireNonNull(comparator, "comparator is null");
+        if (index < 0)
+            throw new IllegalArgumentException("index must >= 0");
+        Arrays.sort(array, Comparator.comparing(t -> (T) t.get(index), comparator));
     }
 }
