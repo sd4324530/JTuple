@@ -20,9 +20,13 @@ public class Tuple1Test {
         log.debug("tuple1:{}", tuple1.toString());
         log.debug("first:{}", tuple1.first);
         List<String> list = new ArrayList<>();
-        list.add("world");
+        //空List传入
         Tuple1 tuple11 = Tuple1.with(list);
         log.debug("tuple11:{}", tuple11.toString());
+        list.add("world");
+        //正常List传入
+        Tuple1 tuple12 = Tuple1.with(list);
+        log.debug("tuple12:{}", tuple12.toString());
     }
 
     @Test

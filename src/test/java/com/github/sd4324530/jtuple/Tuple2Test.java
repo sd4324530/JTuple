@@ -21,10 +21,17 @@ public class Tuple2Test {
         log.debug("first:{}", tuple2.first);
         log.debug("second:{}", tuple2.second);
         List<Object> list = new ArrayList<>();
-        list.add("say");
-        list.add(true);
+        //空List传入
         Tuple2<String, Boolean> tuple21 = Tuple2.with(list);
         log.debug("tuple21:{}", tuple21.toString());
+        list.add("say");
+        //size=1的List传入
+        Tuple2<String, Boolean> tuple22 = Tuple2.with(list);
+        log.debug("tuple22:{}", tuple22.toString());
+        list.add(true);
+        //正常传入
+        Tuple2<String, Boolean> tuple23 = Tuple2.with(list);
+        log.debug("tuple23:{}", tuple23.toString());
     }
 
     @Test
