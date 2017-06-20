@@ -293,14 +293,14 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param <T>        需要排序的数据类型
      */
     @SuppressWarnings("unchecked")
-    public static <T> void sort(final List<Tuple> list, final int index, final Comparator<T> comparator) {
+    public static <T> void sort(final List<? extends Tuple> list, final int index, final Comparator<T> comparator) {
         requireNonNull(list, "list is null");
         if (list.size() < 2)
             return;
         requireNonNull(comparator, "comparator is null");
         if (index < 0)
             throw new IllegalArgumentException("index must >= 0");
-        list.sort(Comparator.comparing(t -> (T) t.valueList.get(index), comparator));
+        list.sort(Comparator.comparing(t -> (T) ((Tuple) t).valueList.get(index), comparator));
     }
 
     /**
