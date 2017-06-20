@@ -292,7 +292,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param comparator 排序函数
      * @param <T>        需要排序的数据类型
      */
-    public static <T> void sort(final List<? extends Tuple> list, final int index, final Comparator<? super T> comparator) {
+    public static <T> void sort(final List<? extends Tuple> list, final int index, final Comparator<T> comparator) {
         requireNonNull(list, "list is null");
         if (list.size() < 2)
             return;
@@ -323,7 +323,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param comparator 排序函数
      * @param <T>        需要排序的数据类型
      */
-    public static <T> void sort(final Tuple[] array, final int index, final Comparator<? super T> comparator) {
+    public static <T> void sort(final Tuple[] array, final int index, final Comparator<T> comparator) {
         requireNonNull(array, "array is null");
         if (array.length < 2)
             return;
