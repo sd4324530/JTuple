@@ -149,9 +149,10 @@ public class TupleTest {
         //size=1的List传入
         Tuple.sort(list2, 0, Integer::compare);
 
-        Tuple2[] array2 = new Tuple2[5];
+        Tuple2[] array2 = new Tuple2[0];
         //空数组传入
         Tuple.sort(array2, 0, String::compareTo);
+        array2 = new Tuple2[1];
         array2[0] = Tuple2.with("5", 5);
         //length=1的数组传入
         Tuple.sort(array2, 0, String::compareTo);
