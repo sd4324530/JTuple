@@ -99,6 +99,12 @@ public class TupleTest {
         }
 
         try {
+            tupleN.subTuple(0, -1);
+        } catch (Exception e) {
+            log.error("", e);
+        }
+
+        try {
             tupleN.subTuple(0, 1000);
         } catch (Exception e) {
             log.error("", e);
