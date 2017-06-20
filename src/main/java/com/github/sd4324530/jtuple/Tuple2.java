@@ -44,6 +44,7 @@ public final class Tuple2<A, B> extends Tuple {
      * @param <B>  第二个元素类型
      * @return 元组
      */
+    @SuppressWarnings("unchecked")
     public static <A, B> Tuple2<A, B> with(final List<Object> list) {
         requireNonNull(list, "list is null");
         switch (list.size()) {

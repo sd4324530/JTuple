@@ -54,6 +54,7 @@ public final class Tuple4<A, B, C, D> extends Tuple {
      * @param <D>  第四个元素类型
      * @return 元组
      */
+    @SuppressWarnings("unchecked")
     public static <A, B, C, D> Tuple4<A, B, C, D> with(final List<Object> list) {
         requireNonNull(list, "list is null");
         switch (list.size()) {

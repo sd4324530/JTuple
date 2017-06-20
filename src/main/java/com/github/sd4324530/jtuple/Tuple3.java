@@ -49,6 +49,7 @@ public final class Tuple3<A, B, C> extends Tuple {
      * @param <C>  第三个元素类型
      * @return 元组
      */
+    @SuppressWarnings("unchecked")
     public static <A, B, C> Tuple3<A, B, C> with(final List<Object> list) {
         requireNonNull(list, "list is null");
         switch (list.size()) {

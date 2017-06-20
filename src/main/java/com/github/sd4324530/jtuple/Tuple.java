@@ -63,6 +63,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param <T> 元素类型
      * @return 对应元素
      */
+    @SuppressWarnings("unchecked")
     public final <T> T get(final int pos) {
         return (T) this.valueList.get(pos);
     }
@@ -291,6 +292,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param comparator 排序函数
      * @param <T>        需要排序的数据类型
      */
+    @SuppressWarnings("unchecked")
     public static <T> void sort(final List<? extends Tuple> list, final int index, final Comparator<? super T> comparator) {
         requireNonNull(list, "list is null");
         if (list.size() < 2)
@@ -322,6 +324,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @param comparator 排序函数
      * @param <T>        需要排序的数据类型
      */
+    @SuppressWarnings("unchecked")
     public static <T> void sort(final Tuple[] array, final int index, final Comparator<? super T> comparator) {
         requireNonNull(array, "array is null");
         if (array.length < 2)

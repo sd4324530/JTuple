@@ -59,6 +59,7 @@ public final class Tuple5<A, B, C, D, E> extends Tuple {
      * @param <E>  第五个元素类型
      * @return 元组
      */
+    @SuppressWarnings("unchecked")
     public static <A, B, C, D, E> Tuple5<A, B, C, D, E> with(final List<Object> list) {
         requireNonNull(list, "list is null");
         switch (list.size()) {
