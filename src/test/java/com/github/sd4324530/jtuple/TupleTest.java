@@ -125,57 +125,6 @@ public class TupleTest {
     }
 
     @Test
-    public void testSort() {
-        List<Tuple2> list = new ArrayList<>();
-        list.add(Tuple2.with(5, "5"));
-        list.add(Tuple2.with(2, "2"));
-        list.add(Tuple2.with(3, "3"));
-        list.add(Tuple2.with(1, "1"));
-        list.add(Tuple2.with(4, "4"));
-        log.debug("before:{}", list);
-        //按第一列Integer类型升序
-        Tuple.sort(list, 0, Integer::compare);
-        log.debug("after:{}", list);
-
-        Tuple2[] array = new Tuple2[5];
-        array[0] = Tuple2.with("5", 5);
-        array[1] = Tuple2.with("2", 2);
-        array[2] = Tuple2.with("3", 3);
-        array[3] = Tuple2.with("1", 1);
-        array[4] = Tuple2.with("4", 4);
-        log.debug("before:{}", Arrays.toString(array));
-        //按第一列String类型升序
-        Tuple.sort(array, 0, String::compareTo);
-        log.debug("after:{}", Arrays.toString(array));
-
-
-        List<Tuple2> list2 = new ArrayList<>();
-        //空List传入
-        Tuple.sort(list2, 0, Integer::compare);
-        list2.add(Tuple2.with(5, "5"));
-        //size=1的List传入
-        Tuple.sort(list2, 0, Integer::compare);
-
-        Tuple2[] array2 = new Tuple2[0];
-        //空数组传入
-        Tuple.sort(array2, 0, String::compareTo);
-        array2 = new Tuple2[1];
-        array2[0] = Tuple2.with("5", 5);
-        //length=1的数组传入
-        Tuple.sort(array2, 0, String::compareTo);
-        try {
-            Tuple.sort(list, -1, Integer::compare);
-        } catch (Exception e) {
-            log.error("", e);
-        }
-        try {
-            Tuple.sort(array, -1, Integer::compare);
-        } catch (Exception e) {
-            log.error("", e);
-        }
-    }
-
-    @Test
     public void testToList() {
         Tuple2 tuple2 = Tuple2.with("hello", 123);
         log.debug("toList:{}", tuple2.toList());

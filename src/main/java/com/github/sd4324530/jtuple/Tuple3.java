@@ -34,6 +34,7 @@ public final class Tuple3<A, B, C> extends Tuple {
      * @param <B>    第二个元素类型
      * @param <C>    第三个元素类型
      * @return 元组
+     * @see Tuples#tuple(Object, Object, Object)
      */
     public static <A, B, C> Tuple3<A, B, C> with(final A first, final B second, final C third) {
         return new Tuple3<>(first, second, third);

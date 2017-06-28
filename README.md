@@ -35,6 +35,7 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 | Tuple4 |      只包含4个元素的元组       |
 | Tuple5 |      只包含5个元素的元组       |
 | TupleN |       包含N个元素的元组       |
+| Tuples |    提供优雅使用元组方式的工具类     |
 
 
 
@@ -60,8 +61,13 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 
 ## API使用样例
 ```java
-//创建元组时，明确知道个数，可以优先使用Tuple0-Tuple5，获取元素API更加友好
-Tuple2 tuple2 = Tuple2.with("test", 123);
+//静态导入工具类，然后开始优雅的使用元组吧
+import static com.github.sd4324530.jtuple.Tuples.tuple;
+```
+
+```java
+//读取指定位置元素
+Tuple2<String, Integer> tuple = tuple("test", 123);
 log.debug("first:{}", tuple2.first);//test
 log.debug("second:{}", tuple2.second);//123
 ```
@@ -69,57 +75,61 @@ log.debug("second:{}", tuple2.second);//123
 
 ``` java
 //toString
-TupleN tuple = TupleN.with("hello", 123, true, 186.5);
-log.debug("toString:{}", tuple.toString());//(hello, 123, true, 186.5)
+Tuple4<String, Integer, Boolean, Double> tuple = tuple("test", 123, true, 186.5);
+log.debug("tuple4:{}", tuple.toString());
 ```
 
 ``` java
 //元组遍历
-TupleN tuple = TupleN.with("hello", 123, true, 186.5, null);
+Tuple5<String, Integer, Boolean, Double, Character> tuple = tuple("test", 123, true, 186.5, 'A');
 tuple.forEach(o -> log.debug(Objects.toString(o)));
 ```
 
 ```java
 //元组合并
-Tuple1 tuple1 = Tuple1.with("hello");
-Tuple2 tuple2 = Tuple2.with("world", "!");
-Tuple3 tuple3 = Tuple3.with(1, 2, 3);
+Tuple1<String> tuple1 = tuple("hello");
+Tuple2<String, String> tuple2 = tuple("world", "!");
+Tuple3<Integer, Integer, Integer> tuple3 = tuple(1, 2, 3);
 log.debug("add:{}", tuple1.add(tuple2).toString());//(hello, world, !)
 log.debug("add:{}", tuple1.add(tuple2, tuple3).toString());//(hello, world, !, 1, 2, 3)
 ```
 
 ```java
 //元组翻转
-TupleN tuple = TupleN.with("hello", 123, true, 186.5);
+Tuple4<String, Integer, Boolean, Double> tuple = tuple("hello", 123, true, 186.5);
 log.debug("swap:{}", tuple.swap().toString());//(186.5, true, 123, hello)
 ```
 
 ```java
 //元组重复
-Tuple2 tuple2 = Tuple2.with("a", "b");
+Tuple2<String, String> tuple2 = tuple("a", "b");
 log.debug("repeat:{}", tuple2.repeat(3).toString());//(a, b, a, b, a, b)
 ```
 
 ``` java
 //截取子元组
-TupleN tupleN = TupleN.with(0, 1, 2, 3, 4, 5, 6);
+TupleN tupleN = tuple(0, 1, 2, 3, 4, 5, 6);
 log.debug("sub:{}", tupleN.subTuple(0, 3).toString());//(0, 1, 2, 3)
 ```
 
 ```java
 //转换成流
-TupleN tupleN = TupleN.with("hello", 123, true, null, 186.5);
-tupleN.stream().forEach(o -> log.debug("元素:{}", o));
+Tuple5<String, Integer, Boolean, Object, Double> tuple5 = tuple("hello", 123, true, null, 186.5);
+tuple5.stream().forEach(o -> log.debug("元素:{}", o));
 ```
 
 ```java
 //元组列表排序
+//静态导入工具类
+import static com.github.sd4324530.jtuple.Tuples.tuple;
+import static com.github.sd4324530.jtuple.Tuples.sort;
+
 List<Tuple2> list = new ArrayList<>();
-list.add(Tuple2.with(5, "5"));
-list.add(Tuple2.with(2, "2"));
-list.add(Tuple2.with(3, "3"));
-list.add(Tuple2.with(1, "1"));
-list.add(Tuple2.with(4, "4"));
+list.add(tuple(5, "5"));
+list.add(tuple(2, "2"));
+list.add(tuple(3, "3"));
+list.add(tuple(1, "1"));
+list.add(tuple(4, "4"));
 log.debug("before:{}", list);
 //按第一列Integer类型升序
 Tuple.sort(list, 0, Integer::compare);
@@ -128,12 +138,16 @@ log.debug("after:{}", list);
 
 ```java
 //元组数组排序
+//静态导入工具类
+import static com.github.sd4324530.jtuple.Tuples.tuple;
+import static com.github.sd4324530.jtuple.Tuples.sort;
+
 Tuple2[] array = new Tuple2[5];
-array[0] = Tuple2.with("5", 5);
-array[1] = Tuple2.with("2", 2);
-array[2] = Tuple2.with("3", 3);
-array[3] = Tuple2.with("1", 1);
-array[4] = Tuple2.with("4", 4);
+array[0] = tuple("5", 5);
+array[1] = tuple("2", 2);
+array[2] = tuple("3", 3);
+array[3] = tuple("1", 1);
+array[4] = tuple("4", 4);
 log.debug("before:{}", Arrays.toString(array));
 //按第一列String类型升序
 Tuple.sort(array, 0, String::compareTo);
@@ -171,6 +185,7 @@ log.debug("after:{}", Arrays.toString(array));
    ```java
    public class DbKit {
 
+     import static com.github.sd4324530.jtuple.Tuples.tuple;
        /**
         * 执行查询sql
         *
@@ -180,9 +195,9 @@ log.debug("after:{}", Arrays.toString(array));
        public Tuple2<Exception, List<Object>> query(String sql) {
            try (Connection connection = getConn(); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(sql)) {
                List<Object> data = handleResult(resultSet);
-               return Tuple2.with(null, data);
+               return tuple(null, data);
            } catch (Exception e) {
-               return Tuple2.with(e, null);
+               return tuple(e, null);
            }
        }
    }

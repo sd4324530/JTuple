@@ -26,6 +26,7 @@ public final class Tuple1<A> extends Tuple {
      * @param first 第一个元素
      * @param <A>   元素类型
      * @return 元组
+     * @see Tuples#tuple(Object)
      */
     public static <A> Tuple1<A> with(final A first) {
         return new Tuple1<>(first);

@@ -34,6 +34,7 @@ public final class TupleN extends Tuple {
      *
      * @param args 数组
      * @return 元组
+     * @see Tuples#tuple(Object...)
      */
     public static TupleN with(final Object... args) {
         requireNonNull(args, "args is null");
@@ -45,6 +46,7 @@ public final class TupleN extends Tuple {
      *
      * @param list 列表
      * @return 元组
+     * @see Tuples#tuple(List)
      */
     public static TupleN withList(final List<Object> list) {
         requireNonNull(list, "list is null");
