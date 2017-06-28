@@ -28,6 +28,9 @@ public class TupleTest {
         TupleN tuple = TupleN.with("hello", 123, true, 186.5, null);
         log.debug("foreach:");
         tuple.forEach(o -> log.debug(Objects.toString(o)));
+        for (Object object : tuple) {
+            log.debug(Objects.toString(object));
+        }
     }
 
     @Test
@@ -167,31 +170,5 @@ public class TupleTest {
     public void testHashCode() {
         Tuple2 tuple2 = Tuple2.with("hello", 123);
         log.debug("hashCode:{}", tuple2.hashCode());
-    }
-
-    @Deprecated
-    @Test
-    public void testWithList() {
-        List<Object> list = new ArrayList<>();
-        Tuple tuple0 = Tuple.withList(list);
-        log.debug("tuple0:{}", tuple0.toString());
-        list.add("test");
-        Tuple tuple1 = Tuple.withList(list);
-        log.debug("tuple1:{}", tuple1.toString());
-        list.add(123);
-        Tuple tuple2 = Tuple.withList(list);
-        log.debug("tuple2:{}", tuple2.toString());
-        list.add(true);
-        Tuple tuple3 = Tuple.withList(list);
-        log.debug("tuple3:{}", tuple3.toString());
-        list.add(186.5);
-        Tuple tuple4 = Tuple.withList(list);
-        log.debug("tuple4:{}", tuple4.toString());
-        list.add('D');
-        Tuple tuple5 = Tuple.withList(list);
-        log.debug("tuple5:{}", tuple5.toString());
-        list.add(null);
-        Tuple tuple6 = Tuple.withList(list);
-        log.debug("tuple6:{}", tuple6.toString());
     }
 }

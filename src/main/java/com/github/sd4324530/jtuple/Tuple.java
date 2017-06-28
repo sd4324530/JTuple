@@ -7,7 +7,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
@@ -94,7 +93,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @return 流
      */
     public final Stream<Object> stream() {
-        return StreamSupport.stream(spliterator(), false);
+        return this.valueList.stream();
     }
 
     /**
@@ -103,7 +102,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @return 流
      */
     public final Stream<Object> parallelStream() {
-        return StreamSupport.stream(spliterator(), true);
+        return this.valueList.parallelStream();
     }
 
     /**
@@ -242,32 +241,4 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @return 反转后的元组
      */
     public abstract Tuple swap();
-
-    /**
-     * 从一个列表生成一个元组
-     *
-     * @param list 列表
-     * @return 元组
-     * @deprecated 此方法有些多余，会在未来版本删除，可以直接使用各个元组类的with系列方法，比如{@link Tuple2#with(List)}
-     */
-    @Deprecated
-    public static Tuple withList(final List<Object> list) {
-        requireNonNull(list, "list is null");
-        switch (list.size()) {
-            case 0:
-                return Tuple0.with();
-            case 1:
-                return Tuple1.with(list.get(0));
-            case 2:
-                return Tuple2.with(list.get(0), list.get(1));
-            case 3:
-                return Tuple3.with(list.get(0), list.get(1), list.get(2));
-            case 4:
-                return Tuple4.with(list.get(0), list.get(1), list.get(2), list.get(3));
-            case 5:
-                return Tuple5.with(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4));
-            default:
-                return TupleN.withList(list);
-        }
-    }
 }
