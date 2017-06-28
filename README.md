@@ -81,7 +81,12 @@ log.debug("tuple4:{}", tuple.toString());
 ``` java
 //元组遍历
 Tuple5<String, Integer, Boolean, Double, Character> tuple = tuple("test", 123, true, 186.5, 'A');
+//方式1
 tuple.forEach(o -> log.debug(Objects.toString(o)));
+//方式2
+for (Object object : tuple) {
+	log.debug(Objects.toString(object));
+}
 ```
 
 ```java
