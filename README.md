@@ -1,6 +1,5 @@
 # JTuple
 
-[![Build Status](https://api.travis-ci.org/sd4324530/JTuple.png?branch=master)](https://travis-ci.org/sd4324530/JTuple)
 [![@peiyu on weibo](https://img.shields.io/badge/weibo-%40peiyu-red.svg)](http://weibo.com/1728407960)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.sd4324530/JTuple/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.sd4324530/JTuple)
 [![Circle CI](https://circleci.com/gh/sd4324530/JTuple/tree/master.svg?style=svg)](https://circleci.com/gh/sd4324530/JTuple/tree/master)
@@ -132,7 +131,7 @@ list.add(tuple(1, "1"));
 list.add(tuple(4, "4"));
 log.debug("before:{}", list);
 //按第一列Integer类型升序
-Tuple.sort(list, 0, Integer::compare);
+sort(list, 0, Integer::compare);
 log.debug("after:{}", list);
 ```
 
@@ -150,7 +149,7 @@ array[3] = tuple("1", 1);
 array[4] = tuple("4", 4);
 log.debug("before:{}", Arrays.toString(array));
 //按第一列String类型升序
-Tuple.sort(array, 0, String::compareTo);
+sort(array, 0, String::compareTo);
 log.debug("after:{}", Arrays.toString(array));
 ```
 
