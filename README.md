@@ -184,12 +184,12 @@ log.debug("after:{}", Arrays.toString(array));
 
    ​
 
-2. 数据库操作封装
-
+2. 数据库操作封装K
    ```java
+   import static com.github.sd4324530.jtuple.Tuples.tuple;
+   
    public class DbKit {
 
-     import static com.github.sd4324530.jtuple.Tuples.tuple;
        /**
         * 执行查询sql
         *
