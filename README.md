@@ -2,6 +2,7 @@
 
 [![@peiyu on weibo](https://img.shields.io/badge/weibo-%40peiyu-red.svg)](http://weibo.com/1728407960)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.sd4324530/JTuple/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.sd4324530/JTuple)
+[![JDK 1.8](https://img.shields.io/badge/JDK-1.8-green.svg "JDK 1.8")]()
 [![Circle CI](https://circleci.com/gh/sd4324530/JTuple/tree/master.svg?style=svg)](https://circleci.com/gh/sd4324530/JTuple/tree/master)
 [![codecov](https://codecov.io/gh/sd4324530/JTuple/branch/master/graph/badge.svg)](https://codecov.io/gh/sd4324530/JTuple)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
@@ -75,7 +76,7 @@ log.debug("second:{}", tuple2.second);//123
 ``` java
 //toString
 Tuple4<String, Integer, Boolean, Double> tuple = tuple("test", 123, true, 186.5);
-log.debug("tuple4:{}", tuple.toString());
+log.debug("tuple4:{}", tuple.toString());//(test, 123, true, 186.5)
 ```
 
 ``` java
@@ -137,7 +138,7 @@ list.add(tuple(4, "4"));
 log.debug("before:{}", list);
 //按第一列Integer类型升序
 sort(list, 0, Integer::compare);
-log.debug("after:{}", list);
+log.debug("after:{}", list);//1, 2, 3, 4, 5
 ```
 
 ```java
@@ -187,10 +188,9 @@ log.debug("after:{}", Arrays.toString(array));
 2. 数据库操作封装
 
    ```java
-   import static com.github.sd4324530.jtuple.Tuples.tuple;
-   
    public class DbKit {
 
+     import static com.github.sd4324530.jtuple.Tuples.tuple;
        /**
         * 执行查询sql
         *
