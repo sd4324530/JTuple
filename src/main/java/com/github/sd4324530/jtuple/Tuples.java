@@ -32,7 +32,7 @@ public final class Tuples {
      * @param <A>   元素泛型
      * @return Tuple1
      */
-    public static <A> Tuple1<A> tuple(A first) {
+    public static <A> Tuple1<A> tuple(final A first) {
         return Tuple1.with(first);
     }
 
@@ -45,7 +45,7 @@ public final class Tuples {
      * @param <B>    元素泛型
      * @return Tuple2
      */
-    public static <A, B> Tuple2<A, B> tuple(A first, B second) {
+    public static <A, B> Tuple2<A, B> tuple(final A first, final B second) {
         return Tuple2.with(first, second);
     }
 
@@ -60,7 +60,7 @@ public final class Tuples {
      * @param <C>    元素泛型
      * @return Tuple3
      */
-    public static <A, B, C> Tuple3<A, B, C> tuple(A first, B second, C third) {
+    public static <A, B, C> Tuple3<A, B, C> tuple(final A first, final B second, final C third) {
         return Tuple3.with(first, second, third);
     }
 
@@ -106,7 +106,7 @@ public final class Tuples {
      * @param args 数组
      * @return TupleN
      */
-    public static TupleN tuple(Object... args) {
+    public static TupleN tuple(final Object... args) {
         return TupleN.with(args);
     }
 
@@ -116,7 +116,7 @@ public final class Tuples {
      * @param list 列表
      * @return TupleN
      */
-    public static TupleN tuple(List<Object> list) {
+    public static TupleN tuple(final List<Object> list) {
         return TupleN.withList(list);
     }
 
