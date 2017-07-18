@@ -78,6 +78,6 @@ public final class Tuple4<A, B, C, D> extends Tuple {
      */
     @Override
     public Tuple4<D, C, B, A> swap() {
-        return Tuple4.with(this.fourth, this.third, this.second, this.first);
+        return new Tuple4<>(this.fourth, this.third, this.second, this.first);
     }
 }

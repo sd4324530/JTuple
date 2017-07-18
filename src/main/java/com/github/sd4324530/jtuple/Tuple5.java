@@ -85,6 +85,6 @@ public final class Tuple5<A, B, C, D, E> extends Tuple {
      */
     @Override
     public Tuple5<E, D, C, B, A> swap() {
-        return Tuple5.with(this.fifth, this.fourth, this.third, this.second, this.first);
+        return new Tuple5<>(this.fifth, this.fourth, this.third, this.second, this.first);
     }
 }

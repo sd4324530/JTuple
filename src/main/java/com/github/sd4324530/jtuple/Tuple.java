@@ -25,6 +25,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     private final List<Object> valueList;
 
     Tuple(final Object... objects) {
+        //其实就是简单的数组，只是包装成List，方便使用List的api进行元素操作
         this.valueList = Arrays.asList(objects);
     }
 

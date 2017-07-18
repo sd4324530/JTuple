@@ -12,7 +12,6 @@
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
     </root>
-    <logger name="org" level="DEBUG"/>
     <logger name="com" level="DEBUG"/>
     
 </configuration>

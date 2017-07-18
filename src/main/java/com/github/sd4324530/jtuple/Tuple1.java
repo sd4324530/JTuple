@@ -54,6 +54,6 @@ public final class Tuple1<A> extends Tuple {
      */
     @Override
     public Tuple1<A> swap() {
-        return Tuple1.with(this.first);
+        return new Tuple1<>(this.first);
     }
 }

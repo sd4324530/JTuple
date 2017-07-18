@@ -26,7 +26,7 @@ public final class TupleN extends Tuple {
     public TupleN swap() {
         final Object[] array = new Object[this.size()];
         this.forEachWithIndex((index, obj) -> array[array.length - 1 - index] = obj);
-        return TupleN.with(array);
+        return new TupleN(array);
     }
 
     /**
@@ -50,6 +50,6 @@ public final class TupleN extends Tuple {
      */
     public static TupleN withList(final List<Object> list) {
         requireNonNull(list, "list is null");
-        return TupleN.with(list.toArray());
+        return new TupleN(list.toArray());
     }
 }
