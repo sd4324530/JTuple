@@ -111,16 +111,6 @@ public final class Tuples {
     }
 
     /**
-     * 由列表创建TupleN
-     *
-     * @param list 列表
-     * @return TupleN
-     */
-    public static TupleN tuple(final List<Object> list) {
-        return TupleN.withList(list);
-    }
-
-    /**
      * 元组列表针对其中某个元素排序，例如
      * <pre>{@code
      *     List<Tuple2> list = new ArrayList<>();

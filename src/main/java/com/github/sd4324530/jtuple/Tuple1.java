@@ -1,9 +1,5 @@
 package com.github.sd4324530.jtuple;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
 /**
  * 表示有1个元素的元组类型
  * 可迭代
@@ -30,21 +26,6 @@ public final class Tuple1<A> extends Tuple {
      */
     public static <A> Tuple1<A> with(final A first) {
         return new Tuple1<>(first);
-    }
-
-    /**
-     * 通过列表创建一个包含1个元素的元组
-     * 包含的元素是列表的第一个元素，如果不存在，则为null
-     *
-     * @param list 列表
-     * @param <A>  元素类型
-     * @return 元组
-     */
-    public static <A> Tuple1<A> with(final List<? extends A> list) {
-        requireNonNull(list, "list is null");
-        if (list.size() == 0)
-            return new Tuple1<>(null);
-        return new Tuple1<>(list.get(0));
     }
 
     /**

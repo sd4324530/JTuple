@@ -173,10 +173,23 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
         requireNonNull(tuples, "tuple is null");
         if (tuples.length == 0)
             return this;
-        List<Object> temp = new ArrayList<>(this.valueList);
+        List<Object> temp = this.toList();
         for (Tuple t : tuples)
             temp.addAll(t.valueList);
-        return TupleN.withList(temp);
+        switch (temp.size()) {
+            case 1:
+                return Tuple1.with(temp.get(0));
+            case 2:
+                return Tuple2.with(temp.get(0),temp.get(1));
+            case 3:
+                return Tuple3.with(temp.get(0), temp.get(1), temp.get(2));
+            case 4:
+                return Tuple4.with(temp.get(0), temp.get(1), temp.get(2), temp.get(3));
+            case 5:
+                return Tuple5.with(temp.get(0), temp.get(1), temp.get(2), temp.get(3), temp.get(4));
+            default:
+                return TupleN.with(temp.toArray());
+        }
     }
 
     /**

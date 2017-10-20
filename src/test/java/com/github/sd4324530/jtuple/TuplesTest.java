@@ -55,15 +55,6 @@ public class TuplesTest {
     }
 
     @Test
-    public void testListTupleN() {
-        List<Object> list = new ArrayList<>();
-        list.add("hello");
-        list.add(456);
-        TupleN tuple = tuple(list);
-        log.debug("tuple:{}", tuple.toString());
-    }
-
-    @Test
     public void testArrayTupleN() {
         Object[] array = new Object[2];
         array[0] = "hello";

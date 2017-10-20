@@ -1,7 +1,5 @@
 package com.github.sd4324530.jtuple;
 
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -39,17 +37,5 @@ public final class TupleN extends Tuple {
     public static TupleN with(final Object... args) {
         requireNonNull(args, "args is null");
         return new TupleN(args);
-    }
-
-    /**
-     * 从一个列表生成一个元组,元组大小等于列表大小
-     *
-     * @param list 列表
-     * @return 元组
-     * @see Tuples#tuple(List)
-     */
-    public static TupleN withList(final List<Object> list) {
-        requireNonNull(list, "list is null");
-        return new TupleN(list.toArray());
     }
 }
