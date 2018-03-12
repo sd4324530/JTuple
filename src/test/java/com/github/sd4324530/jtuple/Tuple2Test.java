@@ -22,7 +22,7 @@ public class Tuple2Test {
     @Test
     public void testSwap() {
         Tuple2 tuple2 = Tuple2.with("test", 123);
-        log.debug("swap:{}", tuple2.swap().toString());
+        log.debug("reverse:{}", tuple2.reverse().toString());
     }
 
 }

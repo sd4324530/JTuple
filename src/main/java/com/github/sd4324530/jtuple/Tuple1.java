@@ -34,7 +34,7 @@ public final class Tuple1<A> extends Tuple {
      * @return 反转后的元组
      */
     @Override
-    public Tuple1<A> swap() {
+    public Tuple1<A> reverse() {
         return new Tuple1<>(this.first);
     }
 }

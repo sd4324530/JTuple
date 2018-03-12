@@ -41,23 +41,23 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 
 ## 元组操作
 
-|      操作API       |               说明                |
-| :--------------: | :-----------------------------: |
-|       add        |              元组合并               |
-|     foreach      |              元组迭代               |
-| forEachWithIndex |             元组带序号迭代             |
-|       swap       |              元组翻转               |
-|     toArray      |             元组转成数组              |
-|      toList      |             元组转成列表              |
-|       get        |            获取元组某一个元素            |
-|     contains     |           元组中是否包含某个元素           |
-|     subTuple     |              截取子元组              |
-|      equals      |          比较2个元组内容是否相同           |
+|     操作API      |                    说明                     |
+| :--------------: | :-----------------------------------------: |
+|       add        |                  元组合并                   |
+|     foreach      |                  元组迭代                   |
+| forEachWithIndex |               元组带序号迭代                |
+|     reverse      |                  元组翻转                   |
+|     toArray      |                元组转成数组                 |
+|      toList      |                元组转成列表                 |
+|       get        |             获取元组某一个元素              |
+|     contains     |           元组中是否包含某个元素            |
+|     subTuple     |                 截取子元组                  |
+|      equals      |           比较2个元组内容是否相同           |
 |     toString     |    输出字符串表示的元组，如: (123, 456)     |
-|      repeat      |           重复元组内的所有元素            |
-|      stream      |      将元组转换成流，类似List.stream      |
+|      repeat      |            重复元组内的所有元素             |
+|      stream      |       将元组转换成流，类似List.stream       |
 |  parallelStream  | 将元组转换成并行流，类似List.parallelStream |
-|       sort       |          将元组列表（数组）进行排序          |
+|       sort       |         将元组列表（数组）进行排序          |
 
 ## API使用样例
 ```java
@@ -86,7 +86,7 @@ Tuple5<String, Integer, Boolean, Double, Character> tuple = tuple("test", 123, t
 tuple.forEach(o -> log.debug(Objects.toString(o)));
 //方式2
 for (Object object : tuple) {
-	log.debug(Objects.toString(object));
+  log.debug(Objects.toString(object));
 }
 ```
 
@@ -102,7 +102,7 @@ log.debug("add:{}", tuple1.add(tuple2, tuple3).toString());//(hello, world, !, 1
 ```java
 //元组翻转
 Tuple4<String, Integer, Boolean, Double> tuple = tuple("hello", 123, true, 186.5);
-log.debug("swap:{}", tuple.swap().toString());//(186.5, true, 123, hello)
+log.debug("reverse:{}", tuple.reverse().toString());//(186.5, true, 123, hello)
 ```
 
 ```java
@@ -188,10 +188,9 @@ log.debug("after:{}", Arrays.toString(array));
 2. 数据库操作封装
 
    ```java
-   import static com.github.sd4324530.jtuple.Tuples.tuple;
-   
    public class DbKit {
 
+     import static com.github.sd4324530.jtuple.Tuples.tuple;
        /**
         * 执行查询sql
         *

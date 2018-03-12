@@ -23,6 +23,6 @@ public class Tuple3Test {
     @Test
     public void testSwap() {
         Tuple3 tuple3 = Tuple3.with(123, "test", 186.5);
-        log.debug("swap:{}", tuple3.swap().toString());
+        log.debug("reverse:{}", tuple3.reverse().toString());
     }
 }

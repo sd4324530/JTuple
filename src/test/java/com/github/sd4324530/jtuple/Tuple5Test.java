@@ -25,6 +25,6 @@ public class Tuple5Test {
     @Test
     public void testSwap() {
         Tuple5 tuple5 = Tuple5.with(123, "test", 186.5, true, null);
-        log.debug("swap:{}", tuple5.swap().toString());
+        log.debug("reverse:{}", tuple5.reverse().toString());
     }
 }

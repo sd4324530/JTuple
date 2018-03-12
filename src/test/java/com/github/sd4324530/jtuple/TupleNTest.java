@@ -24,7 +24,7 @@ public class TupleNTest {
     @Test
     public void testSwap() {
         TupleN tupleN = TupleN.with(123, 456, "test", "hello", "world", true, 2.5, null, 'B');
-        log.debug("swap:{}", tupleN.swap().toString());
+        log.debug("reverse:{}", tupleN.reverse().toString());
     }
 
 }

@@ -254,5 +254,5 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      *
      * @return 反转后的元组
      */
-    public abstract Tuple swap();
+    public abstract Tuple reverse();
 }

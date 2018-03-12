@@ -21,7 +21,7 @@ public final class TupleN extends Tuple {
      * @return 反转后的元组
      */
     @Override
-    public TupleN swap() {
+    public TupleN reverse() {
         final Object[] array = new Object[this.size()];
         this.forEachWithIndex((index, obj) -> array[array.length - 1 - index] = obj);
         return new TupleN(array);

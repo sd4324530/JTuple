@@ -50,7 +50,7 @@ public final class Tuple5<A, B, C, D, E> extends Tuple {
      * @return 反转后的元组
      */
     @Override
-    public Tuple5<E, D, C, B, A> swap() {
+    public Tuple5<E, D, C, B, A> reverse() {
         return new Tuple5<>(this.fifth, this.fourth, this.third, this.second, this.first);
     }
 }

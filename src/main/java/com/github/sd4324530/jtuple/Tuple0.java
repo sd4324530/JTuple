@@ -20,7 +20,7 @@ public final class Tuple0 extends Tuple {
      * @return 反转后的元组
      */
     @Override
-    public Tuple0 swap() {
+    public Tuple0 reverse() {
         return this;
     }
 

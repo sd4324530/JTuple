@@ -42,7 +42,7 @@ public final class Tuple3<A, B, C> extends Tuple {
      * @return 反转后的元组
      */
     @Override
-    public Tuple3<C, B, A> swap() {
+    public Tuple3<C, B, A> reverse() {
         return new Tuple3<>(this.third, this.second, this.first);
     }
 }
