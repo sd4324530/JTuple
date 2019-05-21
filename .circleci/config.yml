@@ -20,7 +20,7 @@ jobs:
             - ~/.m2
           key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
 
-      - run: mvn package
+      - run: mvn package -Dmaven.test.skip=true
 
       - store_artifacts:
           path: target/JTuple-1.2.2-SNAPSHOT.jar
