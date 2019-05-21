@@ -22,5 +22,8 @@ jobs:
 
       - run: mvn package
 
+      - store_test_results:mary:
+          path: target/surefire-reports
+
       - store_artifacts:
           path: target/JTuple-1.2.2-SNAPSHOT.jar
