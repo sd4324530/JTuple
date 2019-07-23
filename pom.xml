@@ -162,7 +162,6 @@
                 <version>3.1.1</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
-                    <!--                    <additionalparam>-Xdoclint:none</additionalparam>-->
                     <encoding>UTF-8</encoding>
                     <sourceFileExcludes>
                         <sourceFileExclude>**/module-info.java</sourceFileExclude>
@@ -322,7 +321,6 @@
                         <version>3.1.1</version>
                         <configuration>
                             <source>${maven.compiler.source}</source>
-                            <!--                    <additionalparam>-Xdoclint:none</additionalparam>-->
                             <encoding>UTF-8</encoding>
                             <sourceFileExcludes>
                                 <sourceFileExclude>**/module-info.java</sourceFileExclude>
