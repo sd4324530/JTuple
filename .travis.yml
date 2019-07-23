@@ -7,4 +7,4 @@ branches:
     - master
 before_install:
   - cp ./toolchains.xml ~/.m2/
-install: mvn clean package -Ptravis -DskipTests=true -Dgpg.skip=true
+install: mvn clean package -Ptravis -Dgpg.skip -Dmaven.test.skip=true
