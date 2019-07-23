@@ -169,6 +169,6 @@ public final class Tuples {
         requireNonNull(comparator, "comparator is null");
         if (index < 0)
             throw new IllegalArgumentException("index must >= 0");
-        Arrays.sort(array, Comparator.comparing(t -> t.get(index), comparator));
+        Arrays.sort(array, Comparator.comparing(t -> (T)t.get(index), comparator));
     }
 }
