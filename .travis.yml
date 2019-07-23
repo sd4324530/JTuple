@@ -8,5 +8,3 @@ branches:
 before_install:
   - cp ./toolchains.xml ~/.m2/
 install: mvn clean package -Ptravis -Dgpg.skip -Dmaven.test.skip=true
-after_success:
-  - mvn clean test jacoco:report coveralls:report
