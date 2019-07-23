@@ -170,7 +170,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      * @return 合并后的新元组
      */
     public final Tuple add(final Tuple... tuples) {
-        requireNonNull(tuples, "tuple is null");
+        requireNonNull(tuples, "tuples is null");
         if (tuples.length == 0)
             return this;
         List<Object> temp = this.toList();
@@ -180,7 +180,7 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
             case 1:
                 return Tuple1.with(temp.get(0));
             case 2:
-                return Tuple2.with(temp.get(0),temp.get(1));
+                return Tuple2.with(temp.get(0), temp.get(1));
             case 3:
                 return Tuple3.with(temp.get(0), temp.get(1), temp.get(2));
             case 4:
@@ -190,6 +190,19 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
             default:
                 return TupleN.with(temp.toArray());
         }
+    }
+
+    /**
+     * 添加新的元素，由于元组是不可变的，所以此方法会返回一个新的元组对象
+     *
+     * @param objs 需要添加的元素
+     * @return 新的元组
+     */
+    public final Tuple add(final Object... objs) {
+        requireNonNull(objs, "objs is null");
+        if (Arrays.stream(objs).anyMatch(obj -> obj instanceof Tuple))
+            throw new IllegalArgumentException("The parameter of this method cannot be Tuple");
+        return this.add(TupleN.with(objs));
     }
 
     /**
