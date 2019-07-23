@@ -41,6 +41,7 @@ public class TupleTest {
         log.debug("add0:{}", tuple1.add(new Tuple1[]{}).toString());
         log.debug("add1:{}", tuple1.add(tuple2).toString());
         log.debug("add2:{}", tuple1.add(tuple2, tuple3).toString());
+        log.debug("add3:{}", tuple1.add("test"));
     }
 
     @Test

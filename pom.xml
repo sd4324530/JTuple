@@ -46,8 +46,10 @@
     <!-- 声明的常量 标识各个jar版本 -->
     <properties>
         <junit.version>4.12</junit.version>
-        <slf4j.version>1.7.25</slf4j.version>
+        <slf4j.version>1.7.26</slf4j.version>
         <logback.version>1.2.3</logback.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -77,11 +79,71 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <archive combine.children="append">
+                        <manifestEntries>
+                            <Automatic-Module-Name>com.github.sd.jtuple</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>toolchain</id>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <version>11</version>
+                        </jdk>
+                        <jdk>
+                            <version>1.8</version>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <executions>
+                    <execution>
+                        <id>base-compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>module-info.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <jdkToolchain>
+                                <version>[9, )</version>
+                            </jdkToolchain>
+                            <release>11</release>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jdkToolchain>
+                        <version>[1.8, )</version>
+                    </jdkToolchain>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -96,9 +158,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.1.1</version>
                 <configuration>
+                    <source>${maven.compiler.source}</source>
+<!--                    <additionalparam>-Xdoclint:none</additionalparam>-->
                     <encoding>UTF-8</encoding>
+                    <sourceFileExcludes>
+                        <sourceFileExclude>**/module-info.java</sourceFileExclude>
+                    </sourceFileExcludes>
+                    <jdkToolchain>
+                        <version>[9, )</version>
+                    </jdkToolchain>
                 </configuration>
                 <executions>
                     <execution>
@@ -169,11 +239,48 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.0</version>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>3.1.2</version>
                         <configuration>
-                            <source>1.8</source>
-                            <target>1.8</target>
+                            <archive combine.children="append">
+                                <manifestEntries>
+                                    <Automatic-Module-Name>com.github.sd.jtuple</Automatic-Module-Name>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.1</version>
+                        <executions>
+                            <execution>
+                                <id>base-compile</id>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                                <configuration>
+                                    <excludes>
+                                        <exclude>module-info.java</exclude>
+                                    </excludes>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>default-compile</id>
+                                <configuration>
+                                    <jdkToolchain>
+                                        <version>[9, )</version>
+                                    </jdkToolchain>
+                                    <release>11</release>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <jdkToolchain>
+                                <version>[1.8, )</version>
+                            </jdkToolchain>
+                            <source>${maven.compiler.source}</source>
+                            <target>${maven.compiler.target}</target>
                             <encoding>UTF-8</encoding>
                         </configuration>
                     </plugin>
@@ -225,9 +332,17 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.1.1</version>
                         <configuration>
+                            <source>${maven.compiler.source}</source>
+<!--                            <additionalparam>-Xdoclint:none</additionalparam>-->
                             <encoding>UTF-8</encoding>
+                            <sourceFileExcludes>
+                                <sourceFileExclude>**/module-info.java</sourceFileExclude>
+                            </sourceFileExcludes>
+                            <jdkToolchain>
+                                <version>[9, )</version>
+                            </jdkToolchain>
                         </configuration>
                         <executions>
                             <execution>
