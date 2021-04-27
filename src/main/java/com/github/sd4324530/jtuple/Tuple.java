@@ -114,9 +114,9 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
      */
     public final long count(Object value) {
         if (isNull(value))
-            return this.valueList.stream().filter(value::equals).count();
-        else
             return this.valueList.stream().filter(Objects::isNull).count();
+        else
+            return this.valueList.stream().filter(value::equals).count();
     }
 
     /**
