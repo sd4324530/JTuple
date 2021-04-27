@@ -3,9 +3,9 @@
 [![@peiyu on weibo](https://img.shields.io/badge/weibo-%40peiyu-red.svg)](http://weibo.com/1728407960)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.sd4324530/JTuple/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.sd4324530/JTuple)
 [![JDK 1.8](https://img.shields.io/badge/JDK-1.8-green.svg "JDK 1.8")]()
-[![Build Status](https://travis-ci.org/sd4324530/JTuple.svg?branch=master)](https://travis-ci.org/sd4324530/JTuple)
+[![Circle CI](https://circleci.com/gh/sd4324530/JTuple/tree/master.svg?style=svg)](https://circleci.com/gh/sd4324530/JTuple/tree/master)
 [![codecov](https://codecov.io/gh/sd4324530/JTuple/branch/master/graph/badge.svg)](https://codecov.io/gh/sd4324530/JTuple)
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 java语言版本的`元组`数据类型，实现了元组类型的特性（`不可变`、 `可迭代`）以及常用操作方法
 
