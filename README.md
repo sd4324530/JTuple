@@ -58,6 +58,7 @@ java语言版本的`元组`数据类型，实现了元组类型的特性（`不�
 |      stream      |       将元组转换成流，类似List.stream       |
 |  parallelStream  | 将元组转换成并行流，类似List.parallelStream |
 |       sort       |         将元组列表（数组）进行排序          |
+|      count       |      统计某个数据在元组当中出现的次数       |
 
 ## API使用样例
 ```java

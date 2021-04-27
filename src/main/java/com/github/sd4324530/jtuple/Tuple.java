@@ -107,6 +107,19 @@ public abstract class Tuple implements Iterable<Object>, Serializable {
     }
 
     /**
+     * 统计某个数据在元组当中出现的次数
+     *
+     * @param value 需要统计的数据
+     * @return 出现的次数
+     */
+    public final long count(Object value) {
+        if (isNull(value))
+            return this.valueList.stream().filter(value::equals).count();
+        else
+            return this.valueList.stream().filter(Objects::isNull).count();
+    }
+
+    /**
      * 迭代元组
      *
      * @param action 迭代函数

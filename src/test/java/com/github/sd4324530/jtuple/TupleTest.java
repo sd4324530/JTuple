@@ -24,6 +24,15 @@ public class TupleTest {
     }
 
     @Test
+    public void testCount() {
+        TupleN tuple = TupleN.with("hello", 123, true, 186.5, null);
+        final long nullCount = tuple.count(null);
+        log.debug("null count:{}", nullCount);
+        final long dataCount = tuple.count(123);
+        log.debug("data count:{}", dataCount);
+    }
+
+    @Test
     public void testForeach() {
         TupleN tuple = TupleN.with("hello", 123, true, 186.5, null);
         log.debug("foreach:");
