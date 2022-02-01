@@ -1,0 +1,5 @@
+language: java
+script:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
