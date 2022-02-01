@@ -59,8 +59,41 @@ public class TuplesTest {
         Object[] array = new Object[2];
         array[0] = "hello";
         array[1] = 456;
-        TupleN tuple = tuple(array);
+        Tuple2<String, Integer> tuple = (Tuple2<String, Integer>) tuple(array);
+        log.debug("tuple class:{}", tuple.getClass());
         log.debug("tuple:{}", tuple.toString());
+    }
+
+    @Test
+    public void testListTuple() {
+        List<Object> list = new ArrayList<>();
+        Tuple tuple0 = tuple(list);
+        log.debug("tuple class:{}", tuple0.getClass());
+        log.debug("tuple:{}", tuple0.toString());
+        list.add("hello");
+        Tuple tuple1 = tuple(list);
+        log.debug("tuple class:{}", tuple1.getClass());
+        log.debug("tuple:{}", tuple1.toString());
+        list.add(456);
+        Tuple tuple2 = tuple(list);
+        log.debug("tuple class:{}", tuple2.getClass());
+        log.debug("tuple:{}", tuple2.toString());
+        list.add(456);
+        Tuple tuple3 = tuple(list);
+        log.debug("tuple class:{}", tuple3.getClass());
+        log.debug("tuple:{}", tuple3.toString());
+        list.add(456);
+        Tuple tuple4 = tuple(list);
+        log.debug("tuple class:{}", tuple4.getClass());
+        log.debug("tuple:{}", tuple4.toString());
+        list.add(456);
+        Tuple tuple5 = tuple(list);
+        log.debug("tuple class:{}", tuple5.getClass());
+        log.debug("tuple:{}", tuple5.toString());
+        list.add('A');
+        Tuple tupleN = tuple(list);
+        log.debug("tuple class:{}", tupleN.getClass());
+        log.debug("tuple:{}", tupleN.toString());
     }
 
     @Test

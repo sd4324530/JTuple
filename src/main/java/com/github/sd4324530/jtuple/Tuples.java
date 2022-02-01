@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -101,13 +102,81 @@ public final class Tuples {
     }
 
     /**
-     * 由数组创建TupleN
+     * 由动态参数生成元组
+     * 情况1：
+     * 当传入的参数为：tuple("test", 123)时，当数量大于等于6的时候，才会走本方法，返回的实际类型为TupleN，可以按需转换
+     * 情况2：
+     * 当传入的参数为数组时，则会根据数组大小，返回对应类型的元组，可以按需转换，如下所示
+     * <pre>
+     *     {@code
+     *     Object[] array = new Object[2];
+     *     array[0] = "hello";
+     *     array[1] = 456;
+     *     Tuple2<String, Integer> tuple = (Tuple2<String, Integer>) tuple(array);
+     *     }
+     * </pre>
      *
      * @param args 数组
-     * @return TupleN
+     * @return 返回的元组
      */
-    public static TupleN tuple(final Object... args) {
-        return TupleN.with(args);
+    public static Tuple tuple(final Object... args) {
+        final Tuple tuple;
+        switch (args.length) {
+            case 0:
+                tuple = Tuple0.with();
+                break;
+            case 1:
+                tuple = Tuple1.with(args[0]);
+                break;
+            case 2:
+                tuple = Tuple2.with(args[0], args[1]);
+                break;
+            case 3:
+                tuple = Tuple3.with(args[0], args[1], args[2]);
+                break;
+            case 4:
+                tuple = Tuple4.with(args[0], args[1], args[2], args[3]);
+                break;
+            case 5:
+                tuple = Tuple5.with(args[0], args[1], args[2], args[3], args[4]);
+                break;
+            default:
+                tuple = TupleN.with(args);
+        }
+        return tuple;
+    }
+
+    /**
+     * 由List创建元组
+     *
+     * @param list 列表
+     * @return 返回的元组，根据列表的长度，返回对应的元组类型
+     */
+    public static Tuple tuple(final List<?> list) {
+        final Tuple tuple;
+        switch (list.size()) {
+            case 0:
+                tuple = Tuple0.with();
+                break;
+            case 1:
+                tuple = Tuple1.with(list.get(0));
+                break;
+            case 2:
+                tuple = Tuple2.with(list.get(0), list.get(1));
+                break;
+            case 3:
+                tuple = Tuple3.with(list.get(0), list.get(1), list.get(2));
+                break;
+            case 4:
+                tuple = Tuple4.with(list.get(0), list.get(1), list.get(2), list.get(3));
+                break;
+            case 5:
+                tuple = Tuple5.with(list.get(0), list.get(1), list.get(2), list.get(3), list.get(4));
+                break;
+            default:
+                tuple = TupleN.with(list.toArray());
+        }
+        return tuple;
     }
 
     /**
@@ -169,6 +238,6 @@ public final class Tuples {
         requireNonNull(comparator, "comparator is null");
         if (index < 0)
             throw new IllegalArgumentException("index must >= 0");
-        Arrays.sort(array, Comparator.comparing(t -> (T)t.get(index), comparator));
+        Arrays.sort(array, Comparator.comparing(t -> (T) t.get(index), comparator));
     }
 }
