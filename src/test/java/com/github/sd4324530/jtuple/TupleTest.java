@@ -20,7 +20,7 @@ public class TupleTest {
         int two = tuple.get(1);
         log.debug("one:{}", one);
         log.debug("two:{}", two);
-        log.debug("toString:{}", tuple.toString());
+        log.debug("toString:{}", tuple);
     }
 
     @Test
@@ -44,9 +44,9 @@ public class TupleTest {
 
     @Test
     public void testAdd() {
-        Tuple1 tuple1 = Tuple1.with("hello");
-        Tuple2 tuple2 = Tuple2.with("world", "!");
-        Tuple3 tuple3 = Tuple3.with(1, 2, null);
+        Tuple1<String> tuple1 = Tuple1.with("hello");
+        Tuple2<String, String> tuple2 = Tuple2.with("world", "!");
+        Tuple3<Integer, Integer, Object> tuple3 = Tuple3.with(1, 2, null);
         log.debug("add0:{}", tuple1.add(new Tuple1[]{}).toString());
         log.debug("add1:{}", tuple1.add(tuple2).toString());
         log.debug("add2:{}", tuple1.add(tuple2, tuple3).toString());
@@ -62,15 +62,13 @@ public class TupleTest {
     @Test
     public void testTuple0() {
         Tuple0 tuple0 = Tuple0.with();
-        Tuple0 tuple01 = Tuple0.with();
-        log.debug("tuple0:{}", tuple0 == tuple01);
-        Tuple1 tuple1 = Tuple1.with("123");
+        Tuple1<String> tuple1 = Tuple1.with("123");
         log.debug("0+1:{}", tuple0.add(tuple1));
     }
 
     @Test
     public void testRepeat() {
-        Tuple2 tuple2 = Tuple2.with("a", null);
+        Tuple2<String, Object> tuple2 = Tuple2.with("a", null);
         log.debug("repeat0:{}", tuple2.repeat(0).toString());
         log.debug("repeat3:{}", tuple2.repeat(3).toString());
 
@@ -83,15 +81,15 @@ public class TupleTest {
 
     @Test
     public void testTuple2() {
-        Tuple2 tuple2 = Tuple2.with("test", 123);
+        Tuple2<String, Integer> tuple2 = Tuple2.with("test", 123);
         log.debug("first:{}", tuple2.first);//test
         log.debug("second:{}", tuple2.second);//123
     }
 
     @Test
     public void testNull() {
-        Tuple2 tuple2 = Tuple2.with("test", null);
-        log.debug("test null:{}", tuple2.toString());
+        Tuple2<String, Object> tuple2 = Tuple2.with("test", null);
+        log.debug("test null:{}", tuple2);
         log.debug("null:{}", tuple2.second);
     }
 
@@ -139,26 +137,26 @@ public class TupleTest {
 
     @Test
     public void testToList() {
-        Tuple2 tuple2 = Tuple2.with("hello", 123);
+        Tuple2<String, Integer> tuple2 = Tuple2.with("hello", 123);
         log.debug("toList:{}", tuple2.toList());
     }
 
     @Test
     public void testToArray() {
-        Tuple2 tuple2 = Tuple2.with("hello", 123);
+        Tuple2<String, Integer> tuple2 = Tuple2.with("hello", 123);
         log.debug("toArray:{}", Arrays.toString(tuple2.toArray()));
     }
 
     @Test
     public void testContains() {
-        Tuple2 tuple2 = Tuple2.with("hello", 123);
+        Tuple2<String, Integer> tuple2 = Tuple2.with("hello", 123);
         log.debug("contains:{}", tuple2.contains(123));
         log.debug("contains:{}", tuple2.contains(456));
     }
 
     @Test
     public void testIterator() {
-        Tuple2 tuple2 = Tuple2.with("hello", 123);
+        Tuple2<String, Integer> tuple2 = Tuple2.with("hello", 123);
         Iterator<Object> iterator = tuple2.iterator();
         while (iterator.hasNext()) {
             log.debug("value:{}", iterator.next());
@@ -167,7 +165,7 @@ public class TupleTest {
 
     @Test
     public void testEquals() {
-        Tuple2 tuple2 = Tuple2.with("hello", 123);
+        Tuple2<String, Integer> tuple2 = Tuple2.with("hello", 123);
         log.debug("equals null:{}", tuple2.equals(null));
         Tuple0 tuple0 = Tuple0.with();
         Tuple0 tuple01 = Tuple0.with();
@@ -178,7 +176,7 @@ public class TupleTest {
 
     @Test
     public void testHashCode() {
-        Tuple2 tuple2 = Tuple2.with("hello", 123);
+        Tuple2<String, Integer> tuple2 = Tuple2.with("hello", 123);
         log.debug("hashCode:{}", tuple2.hashCode());
     }
 }

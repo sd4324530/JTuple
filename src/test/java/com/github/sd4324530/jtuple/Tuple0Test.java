@@ -14,12 +14,12 @@ public class Tuple0Test {
     @Test
     public void testWith() {
         Tuple0 tuple0 = Tuple0.with();
-        log.debug("tuple0:{}", tuple0.toString());
+        log.debug("tuple0:{}", tuple0);
     }
 
     @Test
     public void testSwap() {
         Tuple0 tuple0 = Tuple0.with();
-        log.debug("reverse:{}", tuple0.reverse().toString());
+        log.debug("reverse:{}", tuple0.reverse());
     }
 }

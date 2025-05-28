@@ -27,31 +27,31 @@ public class TuplesTest {
     @Test
     public void testTuple1() {
         Tuple1<String> tuple = tuple("test");
-        log.debug("tuple1:{}", tuple.toString());
+        log.debug("tuple1:{}", tuple);
     }
 
     @Test
     public void testTuple2() {
         Tuple2<String, Integer> tuple = tuple("test", 123);
-        log.debug("tuple2:{}", tuple.toString());
+        log.debug("tuple2:{}", tuple);
     }
 
     @Test
     public void testTuple3() {
         Tuple3<String, Integer, Boolean> tuple = tuple("test", 123, true);
-        log.debug("tuple3:{}", tuple.toString());
+        log.debug("tuple3:{}", tuple);
     }
 
     @Test
     public void testTuple4() {
         Tuple4<String, Integer, Boolean, Double> tuple = tuple("test", 123, true, 186.5);
-        log.debug("tuple4:{}", tuple.toString());
+        log.debug("tuple4:{}", tuple);
     }
 
     @Test
     public void testTuple5() {
         Tuple5<String, Integer, Boolean, Double, Character> tuple = tuple("test", 123, true, 186.5, 'A');
-        log.debug("tuple5:{}", tuple.toString());
+        log.debug("tuple5:{}", tuple);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class TuplesTest {
         array[1] = 456;
         Tuple2<String, Integer> tuple = (Tuple2<String, Integer>) tuple(array);
         log.debug("tuple class:{}", tuple.getClass());
-        log.debug("tuple:{}", tuple.toString());
+        log.debug("tuple:{}", tuple);
     }
 
     @Test
@@ -69,31 +69,31 @@ public class TuplesTest {
         List<Object> list = new ArrayList<>();
         Tuple tuple0 = tuple(list);
         log.debug("tuple class:{}", tuple0.getClass());
-        log.debug("tuple:{}", tuple0.toString());
+        log.debug("tuple:{}", tuple0);
         list.add("hello");
         Tuple tuple1 = tuple(list);
         log.debug("tuple class:{}", tuple1.getClass());
-        log.debug("tuple:{}", tuple1.toString());
+        log.debug("tuple:{}", tuple1);
         list.add(456);
         Tuple tuple2 = tuple(list);
         log.debug("tuple class:{}", tuple2.getClass());
-        log.debug("tuple:{}", tuple2.toString());
+        log.debug("tuple:{}", tuple2);
         list.add(456);
         Tuple tuple3 = tuple(list);
         log.debug("tuple class:{}", tuple3.getClass());
-        log.debug("tuple:{}", tuple3.toString());
+        log.debug("tuple:{}", tuple3);
         list.add(456);
         Tuple tuple4 = tuple(list);
         log.debug("tuple class:{}", tuple4.getClass());
-        log.debug("tuple:{}", tuple4.toString());
+        log.debug("tuple:{}", tuple4);
         list.add(456);
         Tuple tuple5 = tuple(list);
         log.debug("tuple class:{}", tuple5.getClass());
-        log.debug("tuple:{}", tuple5.toString());
+        log.debug("tuple:{}", tuple5);
         list.add('A');
         Tuple tupleN = tuple(list);
         log.debug("tuple class:{}", tupleN.getClass());
-        log.debug("tuple:{}", tupleN.toString());
+        log.debug("tuple:{}", tupleN);
     }
 
     @Test

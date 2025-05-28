@@ -14,7 +14,7 @@ public class TupleNTest {
     @Test
     public void testWith() {
         TupleN tupleN = TupleN.with(123, 456, "test", "hello", "world", true, 2.5, null, 'B');
-        log.debug("tupleN:{}", tupleN.toString());
+        log.debug("tupleN:{}", tupleN);
         Integer first = tupleN.get(0);
         String third = tupleN.get(2);
         log.debug("first:{}", first);
@@ -24,7 +24,7 @@ public class TupleNTest {
     @Test
     public void testSwap() {
         TupleN tupleN = TupleN.with(123, 456, "test", "hello", "world", true, 2.5, null, 'B');
-        log.debug("reverse:{}", tupleN.reverse().toString());
+        log.debug("reverse:{}", tupleN.reverse());
     }
 
 }

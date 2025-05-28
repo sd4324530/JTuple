@@ -13,8 +13,8 @@ public class Tuple3Test {
 
     @Test
     public void testWith() {
-        Tuple3 tuple3 = Tuple3.with(123, "test", 186.5);
-        log.debug("tuple3:{}", tuple3.toString());
+        Tuple3<Integer, String, Double> tuple3 = Tuple3.with(123, "test", 186.5);
+        log.debug("tuple3:{}", tuple3);
         log.debug("first:{}", tuple3.first);
         log.debug("second:{}", tuple3.second);
         log.debug("third:{}", tuple3.third);
@@ -22,7 +22,7 @@ public class Tuple3Test {
 
     @Test
     public void testSwap() {
-        Tuple3 tuple3 = Tuple3.with(123, "test", 186.5);
-        log.debug("reverse:{}", tuple3.reverse().toString());
+        Tuple3<Integer, String, Double> tuple3 = Tuple3.with(123, "test", 186.5);
+        log.debug("reverse:{}", tuple3.reverse());
     }
 }

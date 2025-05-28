@@ -13,8 +13,8 @@ public class Tuple5Test {
 
     @Test
     public void testWith() {
-        Tuple5 tuple5 = Tuple5.with(123, "test", 186.5, true, null);
-        log.debug("tuple5:{}", tuple5.toString());
+        Tuple5<Integer, String, Double, Boolean, Object> tuple5 = Tuple5.with(123, "test", 186.5, true, null);
+        log.debug("tuple5:{}", tuple5);
         log.debug("first:{}", tuple5.first);
         log.debug("second:{}", tuple5.second);
         log.debug("third:{}", tuple5.third);
@@ -24,7 +24,7 @@ public class Tuple5Test {
 
     @Test
     public void testSwap() {
-        Tuple5 tuple5 = Tuple5.with(123, "test", 186.5, true, null);
-        log.debug("reverse:{}", tuple5.reverse().toString());
+        Tuple5<Integer, String, Double, Boolean, Object> tuple5 = Tuple5.with(123, "test", 186.5, true, null);
+        log.debug("reverse:{}", tuple5.reverse());
     }
 }
